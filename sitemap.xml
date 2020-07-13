@@ -1,85 +1,85 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
+
   <url>
-    <loc>https://example.com/</loc>
+    <loc>https://tkhan11.github.io/</loc>
     <lastmod>2020-04-14T11:25:05-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-  
+
   <url>
-    <loc>https://example.com/post/project-6/</loc>
+    <loc>https://tkhan11.github.io/post/project-6/index.html</loc>
     <lastmod>2020-04-14T11:25:05-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-  
+
   <url>
-    <loc>https://example.com/post/project-5/</loc>
+    <loc>https://tkhan11.github.io/post/project-5/index.html/</loc>
     <lastmod>2020-04-13T11:15:58-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-  
+
   <url>
-    <loc>https://example.com/post/project-4/</loc>
+    <loc>https://tkhan11.github.io/post/project-4/index.html/</loc>
     <lastmod>2020-04-12T11:14:48-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-  
+
   <url>
-    <loc>https://example.com/post/project-3/</loc>
+    <loc>https://tkhan11.github.io/post/page/2/project-3/index.html</loc>
     <lastmod>2020-04-11T11:13:32-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-  
+
   <url>
-    <loc>https://example.com/post/project-2/</loc>
+    <loc>https://tkhan11.github.io/post/page/2/project-2/index.html</loc>
     <lastmod>2020-04-10T11:00:59-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-  
+
   <url>
-    <loc>https://example.com/post/project-1/</loc>
+    <loc>https://tkhan11.github.io/post/page/2/project-1/index.html</loc>
     <lastmod>2020-04-09T10:58:08-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-  
+
   <url>
-    <loc>https://example.com/post/</loc>
+    <loc>https://tkhan11.github.io/post/</loc>
     <lastmod>2017-03-02T12:00:00-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-  
+
   <url>
-    <loc>https://example.com/about/</loc>
+    <loc>https://tkhan11.github.io/about/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-  
+
   <url>
-    <loc>https://example.com/categories/</loc>
+    <loc>https://tkhan11.github.io/categories/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-  
+
   <url>
-    <loc>https://example.com/contact/</loc>
+    <loc>https://tkhan11.github.io/contact/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-  
+
   <url>
-    <loc>https://example.com/tags/</loc>
+    <loc>https://tkhan11.github.io/tags/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-  
+
 </urlset>
