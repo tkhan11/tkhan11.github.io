@@ -13,6 +13,9 @@
 
 
 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
       <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
 
@@ -42,6 +45,129 @@
 <meta name="twitter:title" content="Contact"/>
 <meta name="twitter:description" content="We&#39;d love to hear from you"/>
 
+<style>
+body, html {
+  height: 100%;
+}
+.parallax {
+  /* The image used */
+  background-image: url('about.png');
+
+  /* Full height */
+  /*height: 100%; */
+  min-height: 700px;
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background: #ffc629
+}
+
+.active {
+  background-color: #ffc629;
+}
+</style>
+<style type="text/css">
+.form-style-6{
+  font: 95% Arial, Helvetica, sans-serif;
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 16px;
+  background: #F7F7F7;
+}
+.form-style-6 input[type="text"],
+.form-style-6 input[type="date"],
+.form-style-6 input[type="datetime"],
+.form-style-6 input[type="email"],
+.form-style-6 input[type="number"],
+.form-style-6 input[type="search"],
+.form-style-6 input[type="time"],
+.form-style-6 input[type="url"],
+.form-style-6 textarea,
+.form-style-6 select
+{
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  width: 100%;
+  background: #fff;
+  margin-bottom: 4%;
+  border: 1px solid #ccc;
+  padding: 3%;
+  color: #555;
+  font: 95% Arial, Helvetica, sans-serif;
+}
+.form-style-6 input[type="text"]:focus,
+.form-style-6 input[type="date"]:focus,
+.form-style-6 input[type="datetime"]:focus,
+.form-style-6 input[type="email"]:focus,
+.form-style-6 input[type="number"]:focus,
+.form-style-6 input[type="search"]:focus,
+.form-style-6 input[type="time"]:focus,
+.form-style-6 input[type="url"]:focus,
+.form-style-6 textarea:focus,
+.form-style-6 select:focus
+{
+  box-shadow: 0 0 5px black;
+  padding: 3%;
+  border: 1px solid black;
+}
+
+.form-style-6 input[type="submit"],
+.form-style-6 input[type="button"]{
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  width: 100%;
+  padding: 3%;
+  background: #ffc629;
+  border-bottom: 2px solid #ffc629;
+  border-top-style: none;
+  border-right-style: none;
+  border-left-style: none;
+  color: #fff;
+}
+.form-style-6 input[type="submit"]:hover,
+.form-style-6 input[type="button"]:hover{
+  background: black;
+}
+</style>
 
   </head>
 
@@ -190,24 +316,22 @@
 
 
 
-<form class="black-80 sans-serif" accept-charset="UTF-8" action="https://khantanveer.1193@gmail.com" method="POST" role="form">
-
-    <label class="f6 b db mb1 mt3 sans-serif mid-gray"  for="name">Your Name</label>
-    <input type="text" id="name" name="name" class="w-100 f5 pv3 ph3 bg-light-gray bn"  required placeholder=" "  aria-labelledby="name"/>
-
-    <label class="f6 b db mb1 mt3 sans-serif mid-gray" for="email">Email Address</label>
-    <input type="email" id="email" name="email" class="w-100 f5 pv3 ph3 bg-light-gray bn"  required placeholder=" "  aria-labelledby="email"/>
-    <div class="requirements f6 gray glow i ph3 overflow-hidden">
-      An email address is required.
-    </div>
-
-    <label class="f6 b db mb1 mt3 sans-serif mid-gray" for="message">Message</label>
-    <textarea id="message" name="message" class="w-100 f5 pv3 ph3 bg-light-gray bn h4" aria-labelledby="message"></textarea>
-
-    <input class="db w-100 mv2 white pa3 bn hover-shadow hover-bg-black bg-animate bg-black" type="submit" value="Send" />
-
+<div class="parallax">
+	<center>
+    <h2>Any Reviews from your side regarding your experience on the website</h2>
+<div class="form-style-6">
+<form>
+  <input type="text" name="field1" placeholder="Your Name" />
+  <input type="email" name="field2" placeholder="Email Address" />
+  <textarea name="field3" placeholder="Your Feedback"></textarea>
+  <input type="submit" value="Send" />
 </form>
-
+<script type="text/javascript">
+  $('form').get(0).reset();
+</script>
+</div>
+</div>
+<div class="parallax"></div>
 
       </div>
     </article>
