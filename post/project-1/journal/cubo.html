@@ -10,12 +10,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
 
-  <link rel="stylesheet" href="https://github.com/tkhan11/tkhan11.github.io/blob/master/post/page/2/project-1/assets/css/main.css">
-  <link rel="stylesheet" href="https://github.com/tkhan11/tkhan11.github.io/blob/master/post/page/2/project-1/assets/css/syntax.css">
+  <link rel="stylesheet" href="https://andrewcharlesjones.github.io/assets/css/main.css">
+  <link rel="stylesheet" href="https://andrewcharlesjones.github.io/assets/css/syntax.css">
   <!-- Use Atom -->
   <link type="application/atom+xml" rel="alternate" href="https://tkhan11.github.io/" title="Tanveer Khan" />
   <!-- Use RSS-2.0 -->
-  <!--<link href="https://tkhan11.github.io" type="application/rss+xml" rel="alternate" title="Tanveer Khan | CS PhD schlar @ Jamia Millia Islamia"/>
+  <!--<link href="https://tkhan11.github.io" type="application/rss+xml" rel="alternate" title="Tanveer Khan | CS PhD scholar @ Jamia Millia Islamia"/>
   //-->
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
@@ -61,7 +61,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="$\chi$ divergence upper bound (CUBO)" />
 <script type="application/ld+json">
-{"headline":"$\\chi$ divergence upper bound (CUBO)","dateModified":"2021-03-20T00:00:00+00:00","description":"Minimizing the $\\chi^2$ divergence between a true posterior and an approximate posterior is equivalent to minimizing an upper bound on the log marginal likelihood.","datePublished":"2021-03-20T00:00:00+00:00","url":"https://andrewcharlesjones.github.io/journal/cubo.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://andrewcharlesjones.github.io/journal/cubo.html"},"author":{"@type":"Person","name":"Andy Jones"},"@context":"https://schema.org"}</script>
+{"headline":"$\\chi$ divergence upper bound (CUBO)","dateModified":"2021-03-20T00:00:00+00:00","description":"Minimizing the $\\chi^2$ divergence between a true posterior and an approximate posterior is equivalent to minimizing an upper bound on the log marginal likelihood.","datePublished":"2021-03-20T00:00:00+00:00","url":"https://tkhan11.github.io/post/page/2/project-1/journal/cubo.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://tkhan11.github.io/post/page/2/project-1/journal/cubo.html"},"author":{"@type":"Person","name":"Andy Jones"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -74,33 +74,27 @@
     <header class="masthead">
   <h3 class="masthead-title">
     <a href="https://tkhan11.github.io/">Tanveer Khan </a>
-    <small class="masthead-subtitle"> CS PhD student @ Jamia Millia Islamia</small>
-    <div class="menu">
-  
-  <nav class="social-icons">
-    
-  
-  
-    <a href="https://github.com/tkhan11" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
-  
+    <small class="masthead-subtitle"> CS PhD scholar@ Jamia Millia Islamia</small>
 
-  
+<!-- 
+    <div class="menu">
+ 
+  <nav class="social-icons">
+   
+    <a href="https://github.com/tkhan11" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
   
     <a href="https://www.suraiyajabin.in/tanveer-ahmed-khan" target="_blank"><i class="fa fa-graduation-cap" aria-hidden="true"></i></a>
   
-
-  
-  <!--
     <a href="https://twitter.com/andy_c_jones" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-  -->
 
-  
-  
     <a>tanveer1910377@jmi.ac.in</a>
-  
 
-  </nav>
+ </nav>
+	
+
+
 </div>
+-->
 
   </h3>
 </header>
@@ -196,8 +190,8 @@
 <p>Here, we’ll minimize the CUBO w.r.t. $\lambda_\mu$ an $\lambda_{\sigma^2}$. The animations below show the distributions over iterations of optimization (here, we use Adam to optimize the variational parameters).</p>
 
 <p float="left">
-  <img src="/assets/1d_gaussian_cubo.gif" width="500" />
-  <img src="/assets/1d_gaussian_elbo1.gif" width="500" /> 
+  <img src="/images/1d_gaussian_cubo.gif" width="500" />
+  <img src="/images//1d_gaussian_elbo1.gif" width="500" /> 
 </p>
 
 <p>As we can see, the CUBO spreads the mass of the variational Gaussian wider than the true Gaussian, resulting in an overestimate of the variance.</p>
@@ -207,8 +201,8 @@
 <p>We can see the difference in behavior between the CUBO and ELBO even more clearly in the case of a multimodal $p$. Below, we consider a two-dimensional Gaussian with two modes. We use a multivariate $t$-distribution as our approximate distribution.</p>
 
 <p float="left">
-  <img src="/assets/2d_gaussian_cubo.gif" width="500" />
-  <img src="/assets/2d_gaussian_elbo.gif" width="500" /> 
+  <img src="/images/2d_gaussian_cubo.gif" width="500" />
+  <img src="/images/2d_gaussian_elbo.gif" width="500" /> 
 </p>
 
 <h2 id="code">Code</h2>
