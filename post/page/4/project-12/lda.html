@@ -108,11 +108,11 @@
 
 
 
-<p>In this post, we’ll review a family of fundamental classification algorithms: linear and quadratic discriminant analysis.</p>
+<p style="text-align: justify">In this post, we’ll review a family of fundamental classification algorithms: linear and quadratic discriminant analysis.</p>
 
 <h2 id="disciminative-classifiers">Disciminative classifiers</h2>
 
-<p>Consider a classification setting in which we’re given data $\mathbf{X}$ and labels $\mathbf{Y}$ that come from $K$ disjoint categories, and we’re tasked with finding the best way to separate the data into their respective classes based on the data $\mathbf{X}$. One way to approach this problem is to estimate a conditional probability for each class. Then, when we want to predict the class of a new point, we can choose the class that has the maximum probability given the data point. The conditional probability for data point $i$ belonging to class $k$ is denoted</p>
+<p style="text-align: justify">Consider a classification setting in which we’re given data $\mathbf{X}$ and labels $\mathbf{Y}$ that come from $K$ disjoint categories, and we’re tasked with finding the best way to separate the data into their respective classes based on the data $\mathbf{X}$. One way to approach this problem is to estimate a conditional probability for each class. Then, when we want to predict the class of a new point, we can choose the class that has the maximum probability given the data point. The conditional probability for data point $i$ belonging to class $k$ is denoted</p>
 
 \[\mathbb{P}[Y_i = k | X_i].\]
 
@@ -120,15 +120,15 @@
 
 <p>\begin{align} \mathbb{P}[Y_i = k | X_i] &amp;= \frac{\mathbb{P}[X_i | Y_i = k] \mathbb{P}[Y_i = k]}{\mathbb{P}[X_i]} \\ &amp;= \frac{\mathbb{P}[X_i | Y_i = k] \mathbb{P}[Y_i = k]}{\sum\limits_{k=1}^K \mathbb{P}[X_i | Y_i = k] \mathbb{P}[Y_i = k]} \\ &amp;\propto \mathbb{P}[X_i | Y_i = k] \mathbb{P}[Y_i = k] \end{align}</p>
 
-<p>Here, $\mathbb{P}[X_i | Y_i = k]$ is the likelihood, $\mathbb{P}[Y_i = k]$ is the prior probability of a point belonging to class $k$, and $\mathbb{P}[X_i]$ is the evidence.</p>
+<p style="text-align: justify">Here, $\mathbb{P}[X_i | Y_i = k]$ is the likelihood, $\mathbb{P}[Y_i = k]$ is the prior probability of a point belonging to class $k$, and $\mathbb{P}[X_i]$ is the evidence.</p>
 
-<p>If we know the likelihood and the prior upfront (or we can estimate them), then we can classify points with the decision rule $D$:</p>
+<p style="text-align: justify">If we know the likelihood and the prior upfront (or we can estimate them), then we can classify points with the decision rule $D$:</p>
 
 \[D(X_i) = \text{arg}\max_k \mathbb{P}[X_i | Y_i = k].\]
 
 <h2 id="quadratic-discriminant-analysis">Quadratic discriminant analysis</h2>
 
-<p>Consider the case where we assume the likelihood to be Gaussian:</p>
+<p style="text-align: justify">Consider the case where we assume the likelihood to be Gaussian:</p>
 
 \[X_i | Y_i = k \sim \mathcal{N}(\mu_k, \Sigma_k).\]
 
@@ -136,7 +136,7 @@
 
 \[f_k(x) = \frac{1}{\sqrt{2 \pi |\Sigma_k|}} \exp\left\{ -\frac12 (x - \mu_k)^\top \Sigma_k^{-1}(x - \mu_k) \right\}.\]
 
-<p>Denote the prior for class $k$ as $\pi_k = \mathbb{P}[Y_i = k]$. Then the conditional probability becomes</p>
+<p style="text-align: justify">Denote the prior for class $k$ as $\pi_k = \mathbb{P}[Y_i = k]$. Then the conditional probability becomes</p>
 
 \[\mathbb{P}[Y_i = k | X_i] \propto \frac{1}{\sqrt{2 \pi |\Sigma_k|}} \exp\left\{ -\frac12 (x - \mu_k)^\top \Sigma_k^{-1}(x - \mu_k) \right\} \pi_k.\]
 
@@ -144,35 +144,35 @@
 
 \[\log \mathbb{P}[Y_i = k | X_i] \propto -\frac12 \log \left( 2 \pi |\Sigma_k|\right) - \frac12 (x - \mu_k)^\top \Sigma_k^{-1}(x - \mu_k) + \log \pi_k.\]
 
-<p>We can then apply the decision rule $\text{arg}\max_k \mathbb{P}[X_i | Y_i = k]$. Notice that the only term that depends on $x$ is $\frac12 (x - \mu_k)^\top \Sigma_k^{-1}(x - \mu_k)$. Thus, we can see that maximizing this decision criterion is is essentially finding the minimum distance between $X_i$ and each of the mean vectors $\mu_1, \dots, \mu_n$. However, this squared distance is scaled by the inverse covariance $\Sigma_k^{-1}$; this is called the Mahalanobis distance.</p>
+<p style="text-align: justify">We can then apply the decision rule $\text{arg}\max_k \mathbb{P}[X_i | Y_i = k]$. Notice that the only term that depends on $x$ is $\frac12 (x - \mu_k)^\top \Sigma_k^{-1}(x - \mu_k)$. Thus, we can see that maximizing this decision criterion is is essentially finding the minimum distance between $X_i$ and each of the mean vectors $\mu_1, \dots, \mu_n$. However, this squared distance is scaled by the inverse covariance $\Sigma_k^{-1}$; this is called the Mahalanobis distance.</p>
 
 <p>Also, notice that the objective $\frac12 (x - \mu_k)^\top \Sigma_k^{-1}(x - \mu_k)$ is quadratic in $x$, hence the name Quadratic Discriminant Analysis.</p>
 
 <h2 id="linear-discriminant-analysis">Linear discriminant analysis</h2>
 
-<p>If we assume that all classes have a common covariance matrix $\Sigma_k = \Sigma$, then the “distance” term becomes</p>
+<p style="text-align: justify">If we assume that all classes have a common covariance matrix $\Sigma_k = \Sigma$, then the “distance” term becomes</p>
 
 <p>\begin{align} \frac12 (x - \mu_k)^\top \Sigma_k^{-1}(x - \mu_k) &amp;= \frac12 (x - \mu_k)^\top \Sigma^{-1}(x - \mu_k) \\ &amp;= x^\top \Sigma^{-1} x - 2x^\top \Sigma^{-1} \mu_k + \mu_k^\top \Sigma^{-1} \mu_k. \end{align}</p>
 
-<p>Notice that the term $x^\top \Sigma^{-1} x$ will be the same for all classes, and the term $\mu_k^\top \Sigma^{-1} \mu_k$ will be the same for all data points. Thus, the only term that affects the decision criterion in this case is $2x^\top \Sigma^{-1} \mu_k$. This is linear in $x$, thus the name “linear Discriminant analysis”.</p>
+<p style="text-align: justify">Notice that the term $x^\top \Sigma^{-1} x$ will be the same for all classes, and the term $\mu_k^\top \Sigma^{-1} \mu_k$ will be the same for all data points. Thus, the only term that affects the decision criterion in this case is $2x^\top \Sigma^{-1} \mu_k$. This is linear in $x$, thus the name “linear Discriminant analysis”.</p>
 
-<p>To more explicitly define the linear function that separates the classes, consider the situation where $K = 2$. Observe that we will decide to classify a point into class $1$ if the following inequality holds:</p>
+<p style="text-align: justify">To more explicitly define the linear function that separates the classes, consider the situation where $K = 2$. Observe that we will decide to classify a point into class $1$ if the following inequality holds:</p>
 
-<p>\begin{align} \log \pi_1 - &amp;\frac12 \log |\Sigma| - \frac12 (x - \mu_1)^\top \Sigma^{-1} (x - \mu_1) \\ &amp;&gt; \log \pi_2 - \frac12 \log |\Sigma| - \frac12 (x - \mu_2)^\top \Sigma^{-1} (x - \mu_2). \\ \end{align}</p>
+<p style="text-align: justify">\begin{align} \log \pi_1 - &amp;\frac12 \log |\Sigma| - \frac12 (x - \mu_1)^\top \Sigma^{-1} (x - \mu_1) \\ &amp;&gt; \log \pi_2 - \frac12 \log |\Sigma| - \frac12 (x - \mu_2)^\top \Sigma^{-1} (x - \mu_2). \\ \end{align}</p>
 
 <p>Otherwise, we categorize it as belonging to class 2.</p>
 
-<p>Cancelling terms and doing some simple algebra (shown in detail here), we have</p>
+<p style="text-align: justify">Cancelling terms and doing some simple algebra (shown in detail here), we have</p>
 
-<p>\begin{align} \log \pi_1 - \frac12 (x - \mu_1)^\top \Sigma^{-1} (x - \mu_1) &amp;&gt; \log \pi_2 - \frac12 (x - \mu_2)^\top \Sigma^{-1} (x - \mu_2) \\ - \frac12 (x - \mu_1)^\top \Sigma^{-1} (x - \mu_1) + \frac12 (x - \mu_2)^\top \Sigma^{-1} (x - \mu_2) &amp;&gt; \log \pi_2 - \log \pi_1  \\ \frac12 x^\top \Sigma^{-1} x + x^\top \Sigma^{-1} \mu_1 - \frac12 \mu_1^\top \Sigma^{-1} \mu_1 + \frac12 x^\top \Sigma^{-1} x - x^\top \Sigma^{-1} \mu_2 + \frac12 \mu_2^\top \Sigma^{-1} \mu_2 &amp;&gt; \log \pi_2 - \log \pi_1  \\ x^\top \Sigma^{-1} \mu_1 - x^\top \Sigma^{-1} \mu_2 &amp;&gt; \log \pi_2 - \log \pi_1 + \frac12 \mu_1^\top \Sigma^{-1} \mu_1 - \frac12 \mu_2^\top \Sigma^{-1} \mu_2  \\ x^\top \Sigma^{-1} (\mu_1 - \mu_2) &amp;&gt; \log \pi_2 - \log \pi_1 + \frac12 \mu_1^\top \Sigma^{-1} \mu_1 - \frac12 \mu_2^\top \Sigma^{-1} \mu_2  \\ \end{align}</p>
+<p style="text-align: justify">\begin{align} \log \pi_1 - \frac12 (x - \mu_1)^\top \Sigma^{-1} (x - \mu_1) &amp;&gt; \log \pi_2 - \frac12 (x - \mu_2)^\top \Sigma^{-1} (x - \mu_2) \\ - \frac12 (x - \mu_1)^\top \Sigma^{-1} (x - \mu_1) + \frac12 (x - \mu_2)^\top \Sigma^{-1} (x - \mu_2) &amp;&gt; \log \pi_2 - \log \pi_1  \\ \frac12 x^\top \Sigma^{-1} x + x^\top \Sigma^{-1} \mu_1 - \frac12 \mu_1^\top \Sigma^{-1} \mu_1 + \frac12 x^\top \Sigma^{-1} x - x^\top \Sigma^{-1} \mu_2 + \frac12 \mu_2^\top \Sigma^{-1} \mu_2 &amp;&gt; \log \pi_2 - \log \pi_1  \\ x^\top \Sigma^{-1} \mu_1 - x^\top \Sigma^{-1} \mu_2 &amp;&gt; \log \pi_2 - \log \pi_1 + \frac12 \mu_1^\top \Sigma^{-1} \mu_1 - \frac12 \mu_2^\top \Sigma^{-1} \mu_2  \\ x^\top \Sigma^{-1} (\mu_1 - \mu_2) &amp;&gt; \log \pi_2 - \log \pi_1 + \frac12 \mu_1^\top \Sigma^{-1} \mu_1 - \frac12 \mu_2^\top \Sigma^{-1} \mu_2  \\ \end{align}</p>
 
-<p>In other words, the two classes are optimally divided by a hyperplane defined by the equation</p>
+<p style="text-align: justify">In other words, the two classes are optimally divided by a hyperplane defined by the equation</p>
 
 \[x^\top \Sigma^{-1} (\mu_1 - \mu_2) + \log \frac{\pi_1}{\pi_2} - \frac12 \mu_1^\top \Sigma^{-1} \mu_1 + \frac12 \mu_2^\top \Sigma^{-1} \mu_2.\]
 
-<p>Notice that, in terms of $x$, this is a linear function, where $x$ is weighted by the term $ \Sigma^{-1} (\mu_1 - \mu_2)$.</p>
+<p style="text-align: justify">Notice that, in terms of $x$, this is a linear function, where $x$ is weighted by the term $ \Sigma^{-1} (\mu_1 - \mu_2)$.</p>
 
-<p>To estimate these parameters from data, we can take the most straightforward estimates:</p>
+<p style="text-align: justify">To estimate these parameters from data, we can take the most straightforward estimates:</p>
 
 \[\hat{\pi}_1 = \frac{n_k}{N}\]
 
@@ -182,7 +182,7 @@
 
 <h2 id="lda-in-python">LDA in Python</h2>
 
-<p>Putting this all together, LDA has a fairly straightforward implementation. Here’s mine, written in Python.</p>
+<p style="text-align: justify">Putting this all together, LDA has a fairly straightforward implementation. Here’s mine, written in Python.</p>
 
 <p>First, let’s generate some synthetic data:</p>
 
@@ -272,17 +272,17 @@
 
 <p><img src="/images/separating_hyperplane.png" alt="hyperplane" /></p>
 
-<p>We can also investigate how this solution changes as we tweak certain aspects of the data and model.</p>
+<p style="text-align: justify">We can also investigate how this solution changes as we tweak certain aspects of the data and model.</p>
 
-<p>For example, if we make one class much more prevalent than the other (say $n_1 = 500, n_2 = 20$), the prior favors this class, and the line subsequently moves closer to this class’s mean. See an example of this in the plot below.</p>
+<p style="text-align: justify">For example, if we make one class much more prevalent than the other (say $n_1 = 500, n_2 = 20$), the prior favors this class, and the line subsequently moves closer to this class’s mean. See an example of this in the plot below.</p>
 
 <p><img src="/images/separating_hyperplane_imbalanced.png" alt="hyperplane_imbalanced" /></p>
 
-<p>We can also investigate quadratic discriminant analysis, which can yield nonlinear decision boudnaries. For example, for imbalanced class sizes, the boundary will curve away from the larger class, favoring this class. Here’s a plot where we show the predicted class for a grid of points (blue is class 1, and yellow is class 2).</p>
+<p style="text-align: justify">We can also investigate quadratic discriminant analysis, which can yield nonlinear decision boudnaries. For example, for imbalanced class sizes, the boundary will curve away from the larger class, favoring this class. Here’s a plot where we show the predicted class for a grid of points (blue is class 1, and yellow is class 2).</p>
 
 <p><img src="/images/qda_decision_boundary.png" alt="qda_boundary" /></p>
 
-<p>If we allow each class to have a unique covariance function, we can get even more highly nonlinear decision boundaries:</p>
+<p style="text-align: justify">If we allow each class to have a unique covariance function, we can get even more highly nonlinear decision boundaries:</p>
 
 <p><img src="/images/qda_decision_boundary_funky.png" alt="qda_boundary" /></p>
 
