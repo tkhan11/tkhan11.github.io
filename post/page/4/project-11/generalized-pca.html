@@ -1,0 +1,446 @@
+<!doctype html>
+<html>
+
+<head>
+
+  <title>
+    Tanveer Khan
+  </title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="https://andrewcharlesjones.github.io/assets/css/main.css">
+  <link rel="stylesheet" href="https://andrewcharlesjones.github.io/assets/css/syntax.css">
+  <!-- Use Atom -->
+  <link type="application/atom+xml" rel="alternate" href="https://tkhan11.github.io/" title="Tanveer Khan" />
+  <!-- Use RSS-2.0 -->
+  <!--<link href="https://tkhan11.github.io" type="application/rss+xml" rel="alternate" title="Tanveer Khan | CS PhD scholar @ Jamia Millia Islamia"/>
+  //-->
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quattrocento+Sans">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+    MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      });
+  </script>
+
+  <!-- Google Analytics -->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-149140730-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <!-- Use Jekyll SEO plugin -->
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Generalized Principal Component Analysis (PCA) | Tanveer Khan</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Generalized Principal Component Analysis (PCA)" />
+<meta name="author" content="Tanveer Khan" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="layout: post title: “Generalized Principal Component Analysis (PCA)” author: “Tanveer Khan” categories: journal blurb: “” img: “” tags: [] —" />
+<meta property="og:description" content="layout: post title: “Generalized PCA” author: “Andy Jones” categories: journal blurb: “” img: “” tags: [] —" />
+<link rel="canonical" href="https://tkhan11.github.io/post/page/4/project-11/generalized-pca.html" />
+<meta property="og:url" content="https://tkhan11.github.io/post/page/4/project-11/generalized-pca.html" />
+<meta property="og:site_name" content="Tanveer Khan" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-04-14T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Generalized Principal Component Analysis (PCA)" />
+<script type="application/ld+json">
+{"headline":"Generalized Principal Component Analysis (PCA)","dateModified":"2021-04-14T00:00:00+00:00","description":"layout: post title: “Generalized PCA” author: “Tanveer Khan” categories: journal blurb: “” img: “” tags: [] —","datePublished":"2021-04-14T00:00:00+00:00","url":"https://tkhan11.github.io/post/page/4/project-11/generalized-pca.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://tkhan11.github.io/post/page/4/project-11/generalized-pca.html"},"author":{"@type":"Person","name":"Tanveer Khan"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+
+
+
+<body>
+
+  <div class="container">
+    <header class="masthead">
+  <h3 class="masthead-title">
+    <a href="https://tkhan11.github.io/">Tanveer Khan </a>
+    <small class="masthead-subtitle"> CS PhD scholar@ Jamia Millia Islamia</small>
+
+<!-- 
+    <div class="menu">
+ 
+  <nav class="social-icons">
+   
+    <a href="https://github.com/tkhan11" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+  
+    <a href="https://www.suraiyajabin.in/tanveer-ahmed-khan" target="_blank"><i class="fa fa-graduation-cap" aria-hidden="true"></i></a>
+  
+    <a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+
+    <a>tanveer1910377@jmi.ac.in</a>
+
+ </nav>
+	
+
+
+</div>
+-->
+
+  </h3>
+</header>
+
+
+    <div class="post-container">
+      <h1 style="line-height: 1.2;">
+  Generalized Principal Component Analysis (PCA)
+</h1>
+
+
+
+<p>layout: post
+title: “Generalized Principal Component Analysis (PCA)”
+author: “Tanveer Khan”
+categories: journal
+blurb: “”
+img: “”
+tags: []
+<!-- image: -->
+—</p>
+
+<p>Principal component analysis (PCA) in its typical form implicitly assumes that the observed data matrix follows a Gaussian distribution. However, PCA can be generalized to allow for other distributions – here, we take a look at its generalization for exponential families introduced by <a href="https://papers.nips.cc/paper/2078-a-generalization-of-principal-components-analysis-to-the-exponential-family.pdf">Collins et al. in 2001</a>.</p>
+
+<h2 id="the-exponential-family">The exponential family</h2>
+
+<p>The exponential family of distributions plays a major role in statistical theory and practical modeling. A large reason for this is that the family allows for many nice closed-form results and asymptotic guarantees for performing estimation and inference. Additionally, the family is fairly diverse and can model lots of different types of data.</p>
+
+<p>Recall the basic form of an exponential family density (here, using Wikipedia’s notation):</p>
+
+\[f(x | \theta) = h(x) \exp\left\{ \eta(\theta) T(x) - A(\theta) \right\}.\]
+
+<p>Here, $T(x)$ is a sufficient statistic, $\eta(\theta)$ is the “natural parameter”, $A(\theta)$ is a normalizing factor that makes the distribution sum to $1$, and $h(x)$ is the base measure. The form of $A(\theta)$ is determined automatically once the other functions have been determined. Its form can perhaps more easily seen by writing</p>
+
+\[f(x | \theta) = \frac{h(x) \exp\left\{ \eta(\theta) T(x) \right\}}{\exp\{A(\theta)\}}.\]
+
+<p>Thus, enforcing $f$ sum to $1$, we must have that</p>
+
+\[\sum\limits_{x \in \mathcal{X}} \frac{h(x) \exp\left\{ \eta(\theta) T(x) \right\}}{\exp\{A(\theta)\}} = \frac{1}{\exp\{A(\theta)\}}\sum\limits_{x \in \mathcal{X}} h(x) \exp\left\{ \eta(\theta) T(x) \right\} = 1.\]
+
+<p>Rearranging, we have</p>
+
+\[\exp\{A(\theta)\} = \sum\limits_{x \in \mathcal{X}} h(x) \exp\left\{ \eta(\theta) T(x) \right\}\]
+
+<p>or, equivalently,</p>
+
+\[A(\theta) = \log \left[ \sum\limits_{x \in \mathcal{X}} h(x) \exp\left\{ \eta(\theta) T(x) \right\} \right].\]
+
+<p>In canonical form, we have $\eta(\theta) = \theta$, and it is also often the case that $T(x) = x$. In this case, the form simplifies to</p>
+
+\[A(\theta) = \log \sum\limits_{x \in \mathcal{X}} h(x) \exp\left\{ \theta x \right\}.\]
+
+<p>Thus, by expanding $A$, we can see that $f$ can also be written as</p>
+
+\[f(x | \theta) = \frac{h(x) \exp\left\{ \theta x \right\}}{ \sum\limits_{x \in \mathcal{X}} h(x) \exp\left\{ \theta x \right\}}.\]
+
+<p>An important property of $A(\theta)$ is that its first derivative with respect to $\theta$ is equal to the expectation of $f$:</p>
+
+<p>\begin{align} A’(\theta) &amp;= \sum\limits_{x \in \mathcal{X}} x \frac{h(x) \exp\left\{ \theta x \right\}} {\sum\limits_{x \in \mathcal{X}} h(x) \exp\left\{ \theta x \right\}} \\ &amp;= \sum\limits_{x \in \mathcal{X}} x f(x | \theta) \\ &amp;= \mathbb{E}_{f(x)}[x | \theta] \end{align}</p>
+
+<h2 id="generalized-linear-models">Generalized linear models</h2>
+
+<p>In the setting of (generalized) linear models, we have a design matrix $\mathbf{X} \in \mathbb{R}^{n \times p}$ and a vector of response variables $\mathbf{Y} \in \mathbb{R}^n$, and we’re interested in in finding a linear relationship between them. Often we assume that the conditional density of $\mathbf{Y} | \mathbf{X}$ is in the exponential family.</p>
+
+<p>Modeling a linear relationship directly as $\mathbb{E}[\mathbf{Y} | \mathbf{X}] = \mathbf{X} \boldsymbol{\beta}$ for a parameter vector $\boldsymbol{\beta} \in \mathbb{R}^p$ implicitly assumes Gaussian errors when a mean-squared error loss is used. However, to accommodate non-Gaussian distributions, we can transform the expected value with a “link function” $g$. Denote $\mu(x) = \mathbb{E}[\mathbf{Y} | \mathbf{X}]$. Then we say</p>
+
+\[g(\mu(x)) = \mathbf{X} \boldsymbol{\beta} \iff \mu(x) = g^{-1}(\mathbf{X} \boldsymbol{\beta}).\]
+
+<p>Recall that $A’(\theta) = \mu(x)$, so we have</p>
+
+<p>\begin{align} &amp;\mu(x) = g^{-1}(\mathbf{X} \boldsymbol{\beta}) = A’(\theta) \\ \implies &amp;\theta = (A’ \circ g)^{-1}(\mathbf{X} \boldsymbol{\beta}) \end{align}</p>
+
+<p>where $\circ$ denotes a composition of the two functions.</p>
+
+<p>A “canonical” link function is defined as $g = (A’)^{-1}$, and in this case we have $\theta = (A’ \circ (A’)^{-1})^{-1}(\mathbf{X} \boldsymbol{\beta}) = \mathbf{X} \boldsymbol{\beta}$.</p>
+
+<p>For simplicity (and practical relevance), the rest of this  post assumes the use of a canonical link function. To fit a GLM, we can write down the likelihood of the parameters $\boldsymbol{\beta}$ given the data $\mathbf{X}, \mathbf{Y}$, and maximize that likelihood using standard optimization methods (gradient descent, Newton’s method, Fisher scoring, etc.). The likelihood for a sample $Y_1, \dots, Y_n$ and $X_1, \dots, X_n$ looks like:</p>
+
+<p>\begin{align} L &amp;= \prod\limits_{i=1}^n h(Y_i) \exp\left\{ \theta Y_i - A(\theta) \right\} \\ &amp;= \prod\limits_{i=1}^n h(Y_i) \exp\left\{ X_i \beta Y_i - A(X_i \beta) \right\} \\ \end{align}</p>
+
+<p>The log-likelihood is</p>
+
+\[\log L = \sum\limits_{i=1}^n \left[ \log h(Y_i) + X_i \beta Y_i - A(X_i \beta)\right].\]
+
+<p>We can then maximize this with respect to $\beta$, which effectively amounts to maximizing $\sum\limits_{i=1}^n \left[ X_i \beta Y_i - A(X_i \beta) \right]$ because the term $\log h(Y_i)$ is constant with respect to $\beta$.</p>
+
+<h2 id="from-glms-to-pca">From GLMs to PCA</h2>
+
+<p>Now, suppose we have a data matrix $\mathbf{X} \in \mathbb{R}^{n \times p}$, and instead of finding a relationship with some response vector, we’d like to understand the patterns of variation within $\mathbf{X}$ alone. We can use a similar modeling approach as that of GLMs (where we assume a linear relationships), but now we model $\mathbb{E}[\mathbf{X}] = \mathbf{A}\mathbf{V}$, where $\mathbf{A}$ and $\mathbf{V}$ are two lower-rank matrices ($\mathbf{A} \in \mathbb{R}^{n \times k}$, and $\mathbf{V} \in \mathbb{R}^{k \times p}$, where $k &lt; p$), neither of which is observed. Notice that now both our “design matrix” and our parameter vector are unknown, unlike in the case of GLMs where we observed a design matrix.</p>
+
+<p>This is precisely the approach taken in a paper by Collins et al. called <a href="https://papers.nips.cc/paper/2078-a-generalization-of-principal-components-analysis-to-the-exponential-family.pdf">“A Generalization of Principal Component
+Analysis to the Exponential Family”</a>. The rest of this post explores the details of this paper.</p>
+
+<p>To be more precise, let $\Theta \in \mathbb{R}^{n \times p}$ be a matrix of canonical parameters. We are now trying to find $\mathbf{A}$ and $\mathbf{V}$ to make the approximation</p>
+
+\[\Theta \approx \mathbf{A} \mathbf{V}\]
+
+<p>where $\mathbf{A} \in \mathbb{R}^{n \times k}$ and $\mathbf{V} \in \mathbb{R}^{k \times p}$. Assume  $k=1$ for now, again for simplicity. In this case, $\mathbf{A}$ and $\mathbf{V}$ are vectors, so let’s denote them as $\mathbf{a}$ and $\mathbf{v}$. Using the exponential family form above, the likelihood is then</p>
+
+<p>\begin{align} \log L(\mathbf{a}, \mathbf{v}) &amp;= \sum\limits_{i = 1}^n \sum\limits_{j = 1}^p \left(\theta_{ij} x_{ij} - A(\theta_{ij}) \right) \\ &amp;= \sum\limits_{i = 1}^n \sum\limits_{j = 1}^p \left( a_i v_j x_{ij} - A(a_i v_j) \right) \\ \end{align}</p>
+
+<p>where $a_i$ is the $i$th element of $\mathbf{a}$, and $v_j$ is the $j$th element of $\mathbf{v}$.</p>
+
+<p>Now we can maximize this likelihood with respect to $\mathbf{A}$ and $\mathbf{V}$. A common way to do this is via alternating minimization of the negative log-likelihood (which is equivalent to maximizing the log-likelihood), which proceeds as:</p>
+
+<ol>
+  <li>Fix $\mathbf{v}$, and minimize the negative log-likelihood w.r.t. $\mathbf{a}$.</li>
+  <li>Fix $\mathbf{a}$, and minimize the negative log-likelihood w.r.t. $\mathbf{v}$.</li>
+  <li>Repeat Steps 1-2 until convergence.</li>
+</ol>
+
+<p>It turns out that these minimization problems are convex in $\mathbf{a}$ and $\mathbf{v}$ individually (while the other one is held fixed), but not convex in both $\mathbf{a}$ and $\mathbf{v}$ simultaneously.</p>
+
+<p>One way to view this problem is as $n + p$ GLM regression problems, where each regression problem has one parameter. For example, when fitting the $i$th element of $\mathbf{a}$, $a_i$ while $\mathbf{v}$ is fixed, we have the following approximation problem:</p>
+
+\[\Theta_i \approx a_i \mathbf{v}\]
+
+<p>where $\Theta_i$ is the $i$th row of $\Theta$.</p>
+
+<p>This leads to the following log-likelihood:</p>
+
+\[\log L(\mathbf{a}_i) = \sum\limits_{j=1}^p \left[a_i v_j \mathbf{X}_{ij} - A(a_i v_j)\right]\]
+
+<p>where the subscript $j$ indicates the $j$th element of a vector.</p>
+
+<p>We can see a correspondence to the typical univariate GLM setting in which we have observed data:</p>
+
+<p>\begin{align} a_i &amp;\iff \boldsymbol{\beta}\; \text{(parameter)} \\ \mathbf{v} &amp;\iff \mathbf{X} \; \text{(Design matrix)} \\ \mathbf{X}_i &amp;\iff \mathbf{Y} \; \text{(Response vector)} \end{align}</p>
+
+<p>where $\mathbf{X}_i \in \mathbb{R}^p$ is the $i$th row of $\mathbf{X}$. A similar correspondence exists when we fit $\mathbf{v}_j$ while holding $\mathbf{A}$ fixed.</p>
+
+<h2 id="examples">Examples</h2>
+
+<h3 id="gaussian-pca">Gaussian (PCA)</h3>
+
+<p>If we assume Gaussian observations with fixed unit variance, then the only parameter is the mean $\mu$. In this case have $A(\theta) = \frac{1}{2} \theta^2 = \frac12 \mu^2$. We also have $A’(\theta) = \mu$, which is indeed the expected value. The log-likelihood of the PCA model is</p>
+
+\[\log L(\mathbf{a}, \mathbf{v}) = \sum\limits_{i = 1}^n \sum\limits_{j = 1}^p \left[ (a_i v_j x_{ij}) - \frac12 (a_i v_j)^2 \right]\]
+
+<p>Minimizing the negative log-likelihood is also equivalent to minimizing the mean-squared error:</p>
+
+\[\log L(\mathbf{a}, \mathbf{v}) = \frac12 ||\mathbf{X} - \mathbf{a}^\top \mathbf{v}||_2^2\]
+
+<p>Again, realizing that that this problem decomposes into $n + p$ regression problems, we can solve for the updates for $\mathbf{a}$ and $\mathbf{v}$. The minimization problem for $a_i$ is</p>
+
+<p>\begin{align} \min_{a_i} \sum\limits_{j=1}^p \left[ -a_i v_j x_{ij} + \frac12 (a_i v_j)^2 \right] \end{align}</p>
+
+<p>In vector form for $\mathbf{a}$, we have</p>
+
+<p>\begin{align} \min_{\mathbf{a}} \frac12 ||\mathbf{X} - \mathbf{V} \mathbf{a}^\top||_2^2 \end{align}</p>
+
+<p>Of course, this has the typical least squares solution. Here’s a quick derivation for completeness:</p>
+
+\[\nabla_{\mathbf{a}} \log L = \mathbf{v}^\top \mathbf{X} - \mathbf{v}^\top \mathbf{v} \mathbf{a}\]
+
+<p>Equating this gradient to 0, we have</p>
+
+<p>\begin{align} &amp;\mathbf{v}^\top \mathbf{X} - \mathbf{v}^\top \mathbf{v} \mathbf{a} = 0 \\ \implies&amp; \mathbf{a} = (\mathbf{v}^\top \mathbf{v})^{-1} \mathbf{v}^\top \mathbf{X} \end{align}</p>
+
+<p>Since $\mathbf{v}$ is a vector, this simplifies to</p>
+
+\[\mathbf{a} = \frac{\mathbf{v}^\top \mathbf{X}}{||\mathbf{v}||_2^2}\]
+
+<p>Similarly, the update for $\mathbf{v}$ is</p>
+
+\[\mathbf{v} = (\mathbf{a}^\top \mathbf{a})^{-1} \mathbf{a}^\top \mathbf{X} = \frac{\mathbf{a}^\top \mathbf{X}}{||\mathbf{a}||_2^2}.\]
+
+<p>So the alternating least squares algorithm for Gaussian PCA is</p>
+
+<ol>
+  <li>Update $\mathbf{a}$ as $\mathbf{a} = \frac{\mathbf{v}^\top \mathbf{X}_i}{||\mathbf{v}||_2^2}$.</li>
+  <li>Update $\mathbf{v}$ as $\frac{\mathbf{a}^\top \mathbf{X}_i}{||\mathbf{a}||_2^2}$.</li>
+  <li>Repeat Steps 1-2 until convergence.</li>
+</ol>
+
+<p>Of course, the Guassian case is particularly nice in that it has an analytical solution for the minimum each time. This isn’t the case in general – let’s see a (slightly) more complex example below.</p>
+
+<h3 id="bernoulli">Bernoulli</h3>
+
+<p>With a Bernoulli likelihood, each individual regression problem now boils down to logistic regression. The normalizing function in this case is $A(\theta) = \log\left\{ 1 + \exp(\theta)\right\}$. Thus, the optimization problem for $\mathbf{a}_i$ is</p>
+
+\[\min_{a_i} \sum\limits_{j=1}^p \left[ -(a_i v_j) \mathbf{X}_{ij} + \log(1 + \exp(a_i v_j)) \right].\]
+
+<p>Of course, there’s no analytical solution in this case, so we can resort to iterative optimization methods. For example, to perform gradient descent, the gradient is</p>
+
+\[\nabla_{a_i} \left[- \log L\right] = \sum\limits_{j = 1}^p \left(- \mathbf{X}_{ij} + \frac{\exp(a_i v_j)}{1 + \exp(a_i v_j)}\right) v_j.\]
+
+<p>Similarly the gradient for $v_j$ is</p>
+
+\[\nabla_{v_j} \left[- \log L\right] = \nabla_{\mathbf{v}_i} \left[- \log L\right] = \sum\limits_{i = 1}^n \left(- \mathbf{X}_{ij} + \frac{\exp(a_i v_j)}{1 + \exp(a_i v_j)}\right) v_j.\]
+
+<p>Then, for some learning rate $\alpha$, we could run</p>
+
+<ol>
+  <li>For $i \in [n]$, update $a_i$ as $a_i = a_i - \alpha \nabla_{a_i} \left[- \log L\right]$.</li>
+  <li>For $j \in [p]$, update $v_j$ as $v_j = v_j - \alpha \nabla_{v_j} \left[- \log L\right]$.</li>
+  <li>Repeat Steps 1-2 until convergence.</li>
+</ol>
+
+<h2 id="simulations">Simulations</h2>
+
+<p>Here’s some simple code for performing alternating least squares with Guassian data as desribed above. Recall that we’re minimizing the negative log-likelihood here, which is equivalent to maximizing the log-likelihood.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">A_true</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">))</span>
+<span class="n">V_true</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">A_true</span><span class="p">,</span> <span class="n">V_true</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span>
+<span class="n">X</span> <span class="o">-=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">num_iters</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">))</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">iter_num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_iters</span><span class="p">):</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">V</span><span class="p">.</span><span class="n">T</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">norm</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">A</span><span class="p">.</span><span class="n">T</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+</code></pre></div></div>
+
+<p>And here’s a plot of the projected data onto the inferred line (here, plotting the “reconstruction” of $\mathbf{X}$ from its inferred components).</p>
+
+<p><img src="/images/gaussian_pca_projected.png" alt="gaussian" /></p>
+
+<p>Here’s code for doing “logistic PCA”, or PCA with bernoulli data. I used Autograd to easily compute the gradients of the likelihood here.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">autograd</span> <span class="kn">import</span> <span class="n">grad</span>
+<span class="kn">import</span> <span class="nn">autograd.numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">A_true</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">))</span>
+<span class="n">V_true</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span>
+<span class="n">X_probs</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">A_true</span><span class="p">,</span> <span class="n">V_true</span><span class="p">)))</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">X_probs</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">bernoulli_link</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">bernoulli_likelihood_A</span><span class="p">(</span><span class="n">curr_A</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">X</span><span class="p">.</span><span class="n">T</span><span class="p">,</span> <span class="n">X</span><span class="p">)))</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">curr_A</span><span class="p">,</span> <span class="n">V</span><span class="p">),</span> <span class="n">X</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">curr_A</span><span class="p">,</span> <span class="n">V</span><span class="p">))))</span>
+    
+<span class="k">def</span> <span class="nf">bernoulli_likelihood_V</span><span class="p">(</span><span class="n">curr_V</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">X</span><span class="p">.</span><span class="n">T</span><span class="p">,</span> <span class="n">X</span><span class="p">)))</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">curr_V</span><span class="p">),</span> <span class="n">X</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">curr_V</span><span class="p">))))</span>
+    
+<span class="n">num_iters</span> <span class="o">=</span> <span class="mi">500</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">))</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span>
+
+<span class="n">A_grad</span> <span class="o">=</span> <span class="n">grad</span><span class="p">(</span><span class="n">bernoulli_likelihood_A</span><span class="p">)</span>
+<span class="n">V_grad</span> <span class="o">=</span> <span class="n">grad</span><span class="p">(</span><span class="n">bernoulli_likelihood_V</span><span class="p">)</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-2</span>
+
+<span class="k">for</span> <span class="n">iter_num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_iters</span><span class="p">):</span>
+    <span class="n">curr_grad_A</span> <span class="o">=</span> <span class="n">A_grad</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">curr_grad_V</span> <span class="o">=</span> <span class="n">V_grad</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+    
+    <span class="n">A</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">curr_grad_A</span>
+    <span class="n">V</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">curr_grad_V</span>
+</code></pre></div></div>
+
+<p>And here’s a plot of the projected data onto the inferred space. Notice in this case that the inferred subspace is nonlinear in the original space.</p>
+
+<p><img src="/images/bernoulli_pca_projected.png" alt="bernoulli" /></p>
+
+<h2 id="conclusions">Conclusions</h2>
+
+<p>Here, we walked through a generalized version of PCA that allows us to account for non-Gaussian data.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li>Collins, Michael, Sanjoy Dasgupta, and Robert E. Schapire. “A generalization of principal components analysis to the exponential family.” Advances in neural information processing systems. 2002.</li>
+  <li>Alex Williams’s <a href="http://alexhwilliams.info/itsneuronalblog/2016/03/27/pca/">blog post on logistic PCA</a></li>
+</ul>
+
+
+<!-- <span class="post-date">
+  
+  
+  April
+  14th,
+  2021
+  by
+  
+    Tanveer Khan
+  
+</span> -->
+
+<!-- <div class="post-date"></div>
+  <div class="sharing-icons">
+    <a href="https://twitter.com/intent/tweet?text=Generalized Principal Component Analysis (PCA)&amp;url=https://tkhan11.github.io/post/page/4/project-11/generalized-pca.html" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://tkhan11.github.io/post/page/4/project-11/generalized-pca.html&amp;title=Generalized Principal Component Analysis (PCA)" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+  </div>
+</div>
+ -->
+
+<!-- <div class="related">
+  <h1 ></h1>
+  
+  <ul class="related-posts">
+    
+  </ul>
+</div>
+ -->
+
+
+
+    </div>
+
+    <footer class="footer">
+  <!-- 
+  
+  
+    <a href="https://github.com/tkhan11" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+  
+
+  
+  
+    <a href="https://suraiyajabin.in/tanveer-ahmed-khan" target="_blank"><i class="fa fa-graduation-cap" aria-hidden="true"></i></a>
+  
+
+  
+  
+    <a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+  
+
+  
+  
+    <a>tanveer1910377@jmi.ac.in</a>
+  
+ -->
+  <div class="post-date"><a href="https://tkhan11.github.io/about/">Tanveer Khan | CS PhD scholar @ Jamia Millia Islamia</a></div>
+</footer>
+
+  </div>
+
+</body>
+</html>
