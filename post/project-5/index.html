@@ -59,7 +59,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-04-14T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Data Visualization in Python" />
+<meta property="twitter:title" content="Fashion-MNIST Clothing Classification using Convolutional Neural Network (CNN)" />
 
 
 <!--
@@ -200,22 +200,436 @@ pyplot.show()
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <p>
-Train: X=(60000, 28, 28), y=(60000,)
-Test: X=(10000, 28, 28), y=(10000,)
 
-Train: X=(60000, 28, 28), y=(60000,)
-Test: X=(10000, 28, 28), y=(10000,)
+# record model performance on a validation dataset during training
+history = model.fit(..., validation_data=(valX, valY))
+
+# record model performance on a validation dataset during training
+history = model.fit(..., validation_data=(valX, valY))
 </p>
 </code></pre></div></div>
 
-<p><img src="/images/fashion.png" alt="fashion" /></p>
+<p><img src="fashion.png" alt="fashion" /></p>
 
 
 <h2 id="the-exponential-family">Model Evaluation Methodology</h2>
 
+<p style="text-align: justify">The <a href="https://www.kaggle.com/zalando-research/fashionmnist/kernels">Fashion-MNIST</a> dataset was developed as a response to the wide use of the <a href ="http://yann.lecun.com/exdb/mnist/">MNIST dataset</a>, that has been effectively “solved” given the use of modern convolutional neural networks.</p>
+
+<p style="text-align: justify">Fashion-MNIST was proposed to be a replacement for MNIST, and although it has not been solved, it is possible to routinely achieve error rates of 10% or less. Like MNIST, it can be a useful starting point for developing and practicing a methodology for solving image classification using convolutional neural networks.</p>
+
+<p style="text-align: justify">Instead of reviewing the literature on well-performing models on the dataset, we can develop a new model from scratch.</p>
+
+<p style="text-align: justify">The dataset already has a well-defined train and test dataset that we can use.</p>
+
+<p style="text-align: justify">In order to estimate the performance of a model for a given training run, we can further split the training set into a train and validation dataset. Performance on the train and validation dataset over each run can then be plotted to provide learning curves and insight into how well a model is learning the problem.</p>
+
+<p style="text-align: justify">The Keras API supports this by specifying the “validation_data” argument to the model.fit() function when training the model, that will, in turn, return an object that describes model performance for the chosen loss and metrics on each training epoch.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+
+# record model performance on a validation dataset during training
+history = model.fit(..., validation_data=(valX, valY))
+
+# record model performance on a validation dataset during training
+history = model.fit(..., validation_data=(valX, valY))
+</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">In order to estimate the performance of a model on the problem in general, we can use k-fold cross-validation, perhaps 5-fold cross-validation. This will give some account of the model’s variance with both respect to differences in the training and test datasets and the stochastic nature of the learning algorithm. The performance of a model can be taken as the mean performance across k-folds, given with the standard deviation, that could be used to estimate a confidence interval if desired.</p>
+
+<p style="text-align: justify">We can use the KFold class from the scikit-learn API to implement the k-fold cross-validation evaluation of a given neural network model. There are many ways to achieve this, although we can choose a flexible approach where the KFold is only used to specify the row indexes used for each split.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+
+# example of k-fold cv for a neural net
+data = ...
+# prepare cross validation
+kfold = KFold(5, shuffle=True, random_state=1)
+# enumerate splits
+for train_ix, test_ix in kfold.split(data):
+        model = ...
+	...
+</p>
+</code></pre></div></div>
 
 
+<p>We will hold back the actual test dataset and use it as an evaluation of our final model.</p>
 
+<h2 id="the-exponential-family">How to Develop a Baseline Model</h2>
+
+<p>The first step is to develop a baseline model.</p>
+
+<p style="text-align: justify">This is critical as it both involves developing the infrastructure for the test harness so that any model we design can be evaluated on the dataset, and it establishes a baseline in model performance on the problem, by which all improvements can be compared.</p>
+
+<p style="text-align: justify">The design of the test harness is modular, and we can develop a separate function for each piece. This allows a given aspect of the test harness to be modified or inter-changed, if we desire, separately from the rest.</p>
+
+<p style="text-align: justify">We can develop this test harness with five key elements. They are the loading of the dataset, the preparation of the dataset, the definition of the model, the evaluation of the model, and the presentation of results.</p>
+
+
+<h3 id="the-exponential-family">Load Dataset</h3>
+
+<p style="text-align: justify">We know some things about the dataset.</p>
+
+<p style="text-align: justify">For example, we know that the images are all pre-segmented (e.g. each image contains a single item of clothing), that the images all have the same square size of 28×28 pixels, and that the images are grayscale. Therefore, we can load the images and reshape the data arrays to have a single color channel.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+# load dataset
+(trainX, trainY), (testX, testY) = fashion_mnist.load_data()
+
+# reshape dataset to have a single channel
+trainX = trainX.reshape((trainX.shape[0], 28, 28, 1))
+testX = testX.reshape((testX.shape[0], 28, 28, 1))
+</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">We also know that there are 10 classes and that classes are represented as unique integers.</p>
+
+<p style="text-align: justify">We can, therefore, use a one hot encoding for the class element of each sample, transforming the integer into a 10 element binary vector with a 1 for the index of the class value. We can achieve this with the to_categorical() utility function.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+# one hot encode target values
+trainY = to_categorical(trainY)
+testY = to_categorical(testY)
+</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">The load_dataset() function implements these behaviors and can be used to load the dataset.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+# load train and test dataset
+def load_dataset():
+
+# load dataset
+(trainX, trainY), (testX, test)
+fashion_mnist.load_data()
+
+# reshape dataset to have a single channe
+trainX = trainX.reshape((trainX.shap 28, 28, 1))
+testX = testX.reshape((testX.shape[0], 28, 28, 1))
+
+# one hot encode target values
+trainY = to_categorical(trainY)
+
+testY = to_categorical(testY)
+return trainX, trainY, testX, test
+</code></pre></div></div>
+
+<h3 id="the-exponential-family">Prepare Pixel Data</h3>
+
+<p style="text-align: justify">We know that the pixel values for each image in the dataset are unsigned integers in the range between black and white, or 0 and 255.</p>
+
+<p style="text-align: justify">We do not know the best way to scale the pixel values for modeling, but we know that some scaling will be required.</p>
+
+<p style="text-align: justify">A good starting point is to normalize the pixel values of grayscale images, e.g. rescale them to the range [0,1]. This involves first converting the data type from unsigned integers to floats, then dividing the pixel values by the maximum value.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+# convert from integers to floats
+train_norm = train.astype('float32')
+test_norm = test.astype('float32')
+
+<p style="text-align: justify"># normalize to rang
+train_norm = train_norm / 255.0
+test_norm = test_norm / 255.0
+</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">The prep_pixels() function below implement these behaviors and is provided with the pixel values for both the train and test datasets that will need to be scaled.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+# scale pixels
+def prep_pixels(train, test):
+	# convert from integers to floats
+	train_norm = train.astype('float32')
+	test_norm = test.astype('float32')
+	# normalize to range 0-1
+  train_norm = train_norm .0
+	test_norm = test_norm / 255.0
+	# return normalized images
+	return train_norm, test_norm
+</p>>
+</code></pre></div></div>
+
+<p style="text-align: justify">This function must be called to prepare the pixel values prior to any modeling.</p>
+<h3 id="the-exponential-family">Define Model</h3>
+
+<p style="text-align: justify">Next, we need to define a baseline convolutional neural network model for the problem.</p>
+
+<p style="text-align: justify">The model has two main aspects: the feature extraction front end comprised of convolutional and pooling layers, and the classifier backend that will make a prediction.</p>
+
+<p style="text-align: justify">For the convolutional front-end, we can start with a single convolutional layer with a small filter size (3,3) and a modest number of filters (32) followed by a max pooling layer. The filter maps can then be flattened to provide features to the classifier.</p>
+
+<p style="text-align: justify"><p style="text-align: justify">Given that the problem is a multi-class classification, we know that we will require an output layer with 10 nodes in order to predict the probability distribution of an image belonging to each of the 10 classes. This will also require the use of a softmax activation function. Between the feature extractor and the output layer, we can add a dense layer to interpret the features, in this case with 100 nodes.</p>
+
+<p style="text-align: justify"><p style="text-align: justify">Aivation function and the He weight initialization scheme, both best practices.</p>
+
+<p style="text-align: justify">We will use a conservative configuration for the stochastic gradient descent optimizer with a learning rate of 0.01 and a momentum of 0.9. The categorical cross-entropy loss function will be optimized, suitable for multi-class classification, and we will monitor the classification accuracy metric, which is appropriate given we have the same number of examples in each of the 10 classes.</p>
+
+<p style="text-align: justify">The define_model() function below will define and return this model.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+# define cnn model
+def define_model():
+	model = Sequential()
+	model.add(Conv2D(32, (3, 3), activation='relu', kernel_initializer='he_uniform', input_shape=(28, 28, 1)))
+	model.add(MaxPooling2D((2, 2)))
+	model.add(Flatten())
+	model.add(Dense(100, activation='relu', kernel_initializer='he_uniform'))
+	model.add(Dense(10, activation='softmax'))
+	# compile model
+	opt = SGD(lr=0.01, momentum=0.9)
+	model.compile(optimizer=opt, loss='categorical_crossentropy', metrics=['accuracy'])
+	return model
+</p>
+</code></pre></div></div>
+
+<h3 id="the-exponential-family">Evaluate Model</h3>
+
+<p style="text-align: justify">After the model is defined, we need to evaluate it.</p>
+
+<p style="text-align: justify">The model will be evaluated using 5-fold cross-validation. The value of k=5 was chosen to provide a baseline for both repeated evaluation and to not be too large as to require a long running time. Each test set will be 20% of the training dataset, or about 12,000 examples, close to the size of the actual test set for this problem.</p>
+
+<p style="text-align: justify">The training dataset is shuffled prior to being split and the sample shuffling is performed each time so that any model we evaluate will have the same train and test datasets in each fold, providing an apples-to-apples comparison.</p>
+
+<p style="text-align: justify">We will train the baseline model for a modest 10 training epochs with a default batch size of 32 examples. The test set for each fold will be used to evaluate the model both during each epoch of the training run, so we can later create learning curves, and at the end of the run, so we can estimate the performance of the model. As such, we will keep track of the resulting history from each run, as well as the classification accuracy of the fold.</p>
+
+<p style="text-align: justify">The evaluate_model() function below implements these behaviors, taking the training dataset as arguments and returning a list of accuracy scores and training histories that can be later summarized.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+# evaluate a model using k-fold cross-validation
+def evaluate_model(dataX, dataY, n_folds=5):
+	scores, histories = list(), list()
+	# prepare cross validation
+	kfold = KFold(n_folds, shuffle=True, random_state=1)
+	# enumerate splits
+	for train_ix, test_ix in kfold.split(dataX):
+		# define model
+		model = define_model()
+		# select rows for train and test
+		trainX, trainY, testX, testY = dataX[train_ix], dataY[train_ix], dataX[test_ix], dataY[test_ix]
+		# fit model
+		history = model.fit(trainX, trainY, epochs=10, batch_size=32, validation_data=(testX, testY), verbose=0)
+		# evaluate model
+		_, acc = model.evaluate(testX, testY, verbose=0)
+		print('> %.3f' % (acc * 100.0))
+		# append scores
+		scores.append(acc)
+		histories.append(history)
+	return scores, histories
+</p>
+</code></pre></div></div>
+
+<h3 id="the-exponential-family">Present Results</h3>
+<p style="text-align: justify">Once the model has been evaluated, we can present the results.</p>
+
+<p style="text-align: justify">There are two key aspects to present: the diagnostics of the learning behavior of the model during training and the estimation of the model performance. These can be implemented using separate functions.</p>
+
+<p style="text-align: justify">First, the diagnostics involve creating a line plot showing model performance on the train and test set during each fold of the k-fold cross-validation. These plots are valuable for getting an idea of whether a model is overfitting, underfitting, or has a good fit for the dataset.</p>
+
+<p style="text-align: justify">We will create a single figure with two subplots, one for loss and one for accuracy. Blue lines will indicate model performance on the training dataset and orange lines will indicate performance on the hold out test dataset. The summarize_diagnostics() function below creates and shows this plot given the collected training histories.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+# plot diagnostic learning curves
+def summarize_diagnostics(histories):
+	for i in range(len(histories)):
+		# plot loss
+		pyplot.subplot(211)
+		pyplot.title('Cross Entropy Loss')
+		pyplot.plot(histories[i].history['loss'], color='blue', label='train')
+		pyplot.plot(histories[i].history['val_loss'], color='orange', label='test')
+		# plot accuracy
+		pyplot.subplot(212)
+		pyplot.title('Classification Accuracy')
+		pyplot.plot(histories[i].history['accuracy'], color='blue', label='train')
+		pyplot.plot(histories[i].history['val_accuracy'], color='orange', label='test')
+	pyplot.show()
+</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">Next, the classification accuracy scores collected during each fold can be summarized by calculating the mean and standard deviation. This provides an estimate of the average expected performance of the model trained on this dataset, with an estimate of the average variance in the mean. We will also summarize the distribution of scores by creating and showing a box and whisker plot.</p>
+
+<p style="text-align: justify">The summarize_performance() function below implements this for a given list of scores collected during model evaluation.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+# summarize model performance
+def summarize_performance(scores):
+	# print summary
+	print('Accuracy: mean=%.3f std=%.3f, n=%d' % (mean(scores)*100, std(scores)*100, len(scores)))
+	# box and whisker plots of results
+	pyplot.boxplot(scores)
+	pyplot.show()
+</p>
+</code></pre></div></div>
+
+<h3 id="the-exponential-family">Complete Example</h3>
+
+<p style="text-align: justify">We need a function that will drive the test harness.</p>
+
+<p style="text-align: justify">This involves calling all of the define functions.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+# run the test harness for evaluating a model
+def run_test_harness():
+	# load dataset
+	trainX, trainY, testX, testY = load_dataset()
+	# prepare pixel data
+	trainX, testX = prep_pixels(trainX, testX)
+	# evaluate model
+	scores, histories = evaluate_model(trainX, trainY)
+	# learning curves
+	summarize_diagnostics(histories)
+	# summarize estimated performance
+	summarize_performance(scores)
+</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">We now have everything we need; the complete code example for a baseline convolutional neural network model on the MNIST dataset is listed below.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+# baseline cnn model for fashion mnist
+from numpy import mean
+from numpy import std
+from matplotlib import pyplot
+from sklearn.model_selection import KFold
+from keras.datasets import fashion_mnist
+from keras.utils import to_categorical
+from keras.models import Sequential
+from keras.layers import Conv2D
+from keras.layers import MaxPooling2D
+from keras.layers import Dense
+from keras.layers import Flatten
+from keras.optimizers import SGD
+
+# load train and test dataset
+def load_dataset():
+	# load dataset
+	(trainX, trainY), (testX, testY) = fashion_mnist.load_data()
+	# reshape dataset to have a single channel
+	trainX = trainX.reshape((trainX.shape[0], 28, 28, 1))
+	testX = testX.reshape((testX.shape[0], 28, 28, 1))
+	# one hot encode target values
+	trainY = to_categorical(trainY)
+	testY = to_categorical(testY)
+	return trainX, trainY, testX, testY
+
+# scale pixels
+def prep_pixels(train, test):
+	# convert from integers to floats
+	train_norm = train.astype('float32')
+	test_norm = test.astype('float32')
+	# normalize to range 0-1
+	train_norm = train_norm / 255.0
+	test_norm = test_norm / 255.0
+	# return normalized images
+	return train_norm, test_norm
+
+# define cnn model
+def define_model():
+	model = Sequential()
+	model.add(Conv2D(32, (3, 3), activation='relu', kernel_initializer='he_uniform', input_shape=(28, 28, 1)))
+	model.add(MaxPooling2D((2, 2)))
+	model.add(Flatten())
+	model.add(Dense(100, activation='relu', kernel_initializer='he_uniform'))
+	model.add(Dense(10, activation='softmax'))
+	# compile model
+	opt = SGD(lr=0.01, momentum=0.9)
+	model.compile(optimizer=opt, loss='categorical_crossentropy', metrics=['accuracy'])
+	return model
+
+# evaluate a model using k-fold cross-validation
+def evaluate_model(dataX, dataY, n_folds=5):
+	scores, histories = list(), list()
+	# prepare cross validation
+	kfold = KFold(n_folds, shuffle=True, random_state=1)
+	# enumerate splits
+	for train_ix, test_ix in kfold.split(dataX):
+		# define model
+		model = define_model()
+		# select rows for train and test
+		trainX, trainY, testX, testY = dataX[train_ix], dataY[train_ix], dataX[test_ix], dataY[test_ix]
+		# fit model
+		history = model.fit(trainX, trainY, epochs=10, batch_size=32, validation_data=(testX, testY), verbose=0)
+		# evaluate model
+		_, acc = model.evaluate(testX, testY, verbose=0)
+		print('> %.3f' % (acc * 100.0))
+		# append scores
+		scores.append(acc)
+		histories.append(history)
+	return scores, histories
+
+# plot diagnostic learning curves
+def summarize_diagnostics(histories):
+	for i in range(len(histories)):
+		# plot loss
+		pyplot.subplot(211)
+		pyplot.title('Cross Entropy Loss')
+		pyplot.plot(histories[i].history['loss'], color='blue', label='train')
+		pyplot.plot(histories[i].history['val_loss'], color='orange', label='test')
+		# plot accuracy
+		pyplot.subplot(212)
+		pyplot.title('Classification Accuracy')
+		pyplot.plot(histories[i].history['accuracy'], color='blue', label='train')
+		pyplot.plot(histories[i].history['val_accuracy'], color='orange', label='test')
+	pyplot.show()
+
+# summarize model performance
+def summarize_performance(scores):
+	# print summary
+	print('Accuracy: mean=%.3f std=%.3f, n=%d' % (mean(scores)*100, std(scores)*100, len(scores)))
+	# box and whisker plots of results
+	pyplot.boxplot(scores)
+	pyplot.show()
+
+# run the test harness for evaluating a model
+def run_test_harness():
+	# load dataset
+	trainX, trainY, testX, testY = load_dataset()
+	# prepare pixel data
+	trainX, testX = prep_pixels(trainX, testX)
+	# evaluate model
+	scores, histories = evaluate_model(trainX, trainY)
+	# learning curves
+	summarize_diagnostics(histories)
+	# summarize estimated performance
+	summarize_performance(scores)
+
+# entry point, run the test harness
+run_test_harness()
+</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">Running the example prints the classification accuracy for each fold of the cross-validation process. This is helpful to get an idea that the model evaluation is progressing.</p>
+
+<p style="text-align: justify">Note: Your results may vary given the stochastic nature of the algorithm or evaluation procedure, or differences in numerical precision. Consider running the example a few times and compare the average outcome.</p>
+
+<p style="text-align: justify">We can see that for each fold, the baseline model achieved an error rate below 10%, and in two cases 98% and 99% accuracy. These are good results.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+> 91.200
+> 91.217
+> 90.958
+> 91.242
+> 91.317
+</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">Next, a diagnostic plot is shown, giving insight into the learning behavior of the model across each fold.</p>
+
+<p style="text-align: justify">In this case, we can see that the model generally achieves a good fit, with train and test learning curves converging. There may be some signs of slight overfitting.</p>
 
 <!-- <span class="post-date">
 
