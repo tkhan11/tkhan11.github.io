@@ -121,9 +121,8 @@
 
   <dd>1.  Fashion MNIST Clothing Classification</dd>
   <dd>2.  Model Evaluation Methodology</dd>
-  <dd>3.  How to Develop a Baseline Model</dd>
-  <dd>4.  How to Develop an Improved Model</dd>
-  <dd>5.  How to Finalize the Model and Make Predictions</dd>
+  <dd>3.  How to Develop a Model</dd>
+  <dd>4.  How to Make Predictions</dd>
 </dl>
 
 
@@ -209,7 +208,7 @@ history = model.fit(..., validation_data=(valX, valY))
 </p>
 </code></pre></div></div>
 
-<p><img src="/images/fashion.png" alt="fashion" /></p>
+<p><img src="fashion.png" alt="fashion" /></p>
 
 
 <h2 id="the-exponential-family">Model Evaluation Methodology</h2>
@@ -630,6 +629,25 @@ run_test_harness()
 <p style="text-align: justify">Next, a diagnostic plot is shown, giving insight into the learning behavior of the model across each fold.</p>
 
 <p style="text-align: justify">In this case, we can see that the model generally achieves a good fit, with train and test learning curves converging. There may be some signs of slight overfitting.</p>
+
+<p><img src="/images/acc.png" alt="accuracy" /></p>
+
+<p style="text-align: justify">Next, the summary of the model performance is calculated. We can see in this case, the model has an estimated skill of about 96%, which is impressive.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+Accuracy: mean=91.187 std=0.121, n=5
+</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">Finally, a box and whisker plot is created to summarize the distribution of accuracy scores.</p>
+
+<p><img src="/images/boxplot.png" alt="boxplot" /></p>
+
+<p style="text-align: justify">As we would expect, the distribution spread across the low-nineties.</p>
+
+<p style="text-align: justify">We now have a robust test harness and a well-performing baseline model.</p>
+
 
 <!-- <span class="post-date">
 
