@@ -116,13 +116,14 @@
 
 <h2 id="the-exponential-family">Tutorial Overview</h2>
 
-<p>This tutorial is divided into four parts they are:</p>
+<p>This tutorial is divided into five parts they are:</p>
 <dl>
 
   <dd>1.  Fashion MNIST Clothing Classification</dd>
   <dd>2.  Model Evaluation Methodology</dd>
   <dd>3.  How to Develop a Model</dd>
-  <dd>4.  How to Make Predictions</dd>
+  <dd>4.  How to Save a Model</dd>
+  <dd>5.  How to Evaluate a model and Make Predictions</dd>
 </dl>
 
 
@@ -647,6 +648,191 @@ Accuracy: mean=91.187 std=0.121, n=5
 <p style="text-align: justify">As we would expect, the distribution spread across the low-nineties.</p>
 
 <p style="text-align: justify">We now have a robust test harness and a well-performing model.</p>
+
+
+  <h2 id="the-exponential-family">How to Save a Model</h2>
+<p style="text-align: justify">A final model is typically fit on all available data, such as the combination of all train and test dataset.</p>
+
+  <p style="text-align: justify">In this tutorial, we are intentionally holding back a test dataset so that we can estimate the performance of the final model, which can be a good idea in practice. As such, we will fit our model on the training dataset only.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+# fit model
+model.fit(trainX, trainY, epochs=10, batch_size=32, verbose=0)
+</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">Once fit, we can save the final model to an h5 file by calling the save() function on the model and pass in the chosen filename.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+# save model
+model.save('final_model.h5')
+</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">Note: saving and loading a Keras model requires that the h5py library is installed on your workstation.</p>
+
+
+
+
+
+<h3 id="the-exponential-family">Evaluate Final Model</h3>
+
+<p style="text-align: justify">We can now load the final model and evaluate it on the hold out test dataset.</p>
+
+<p style="text-align: justify">This is something we might do if we were interested in presenting the performance of the chosen model to project stakeholders.</p>
+
+<p style="text-align: justify">The model can be loaded via the load_model() function.</p>
+
+<p style="text-align: justify">The complete example of loading the saved model and evaluating it on the test dataset is listed below.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+# evaluate the deep model on the test dataset
+from keras.datasets import fashion_mnist
+from keras.models import load_model
+from keras.utils import to_categorical
+
+# load train and test dataset
+def load_dataset():
+	# load dataset
+	(trainX, trainY), (testX, testY) = fashion_mnist.load_data()
+	# reshape dataset to have a single channel
+	trainX = trainX.reshape((trainX.shape[0], 28, 28, 1))
+	testX = testX.reshape((testX.shape[0], 28, 28, 1))
+	# one hot encode target values
+	trainY = to_categorical(trainY)
+	testY = to_categorical(testY)
+	return trainX, trainY, testX, testY
+
+# scale pixels
+def prep_pixels(train, test):
+	# convert from integers to floats
+	train_norm = train.astype('float32')
+	test_norm = test.astype('float32')
+	# normalize to range 0-1
+	train_norm = train_norm / 255.0
+	test_norm = test_norm / 255.0
+	# return normalized images
+	return train_norm, test_norm
+
+# run the test harness for evaluating a model
+def run_test_harness():
+	# load dataset
+	trainX, trainY, testX, testY = load_dataset()
+	# prepare pixel data
+	trainX, testX = prep_pixels(trainX, testX)
+	# load model
+	model = load_model('final_model.h5')
+	# evaluate model on test dataset
+	_, acc = model.evaluate(testX, testY, verbose=0)
+	print('> %.3f' % (acc * 100.0))
+
+# entry point, run the test harness
+run_test_harness()
+</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">Running the example loads the saved model and evaluates the model on the hold out test dataset.</p>
+
+<p style="text-align: justify">The classification accuracy for the model on the test dataset is calculated and printed.</p>
+
+<p style="text-align: justify">Note: Your results may vary given the stochastic nature of the algorithm or evaluation procedure, or differences in numerical precision. Consider running the example a few times and compare the average outcome.</p>
+
+<p style="text-align: justify">In this case, we can see that the model achieved an accuracy of 90.990%, or just less than 10% classification error, which is not bad.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+> 90.990
+</p>
+</code></pre></div></div>
+
+<h3 id="the-exponential-family">Make Prediction</h3>
+
+<p style="text-align: justify">We can use our saved model to make a prediction on new images.</p>
+
+<p style="text-align: justify">The model assumes that new images are grayscale, they have been segmented so that one image contains one centered piece of clothing on a black background, and that the size of the image is square with the size 28×28 pixels.</p>
+
+<p style="text-align: justify">Below is an image extracted from the MNIST test dataset.</p>
+<p><img src="/images/predicted.png" alt="predicted" /></p>
+
+<p style="text-align: justify">We will pretend this is an entirely new and unseen image, prepared in the required way, and see how we might use our saved model to predict the integer that the image represents. For this example, we expect class “2” for “Pullover” (also called a jumper).</p>
+
+<p style="text-align: justify">First, we can load the image, force it to be grayscale format, and force the size to be 28×28 pixels. The loaded image can then be resized to have a single channel and represent a single sample in a dataset. The load_image() function implements this and will return the loaded image ready for classification.</p>
+
+<p style="text-align: justify">Importantly, the pixel values are prepared in the same way as the pixel values were prepared for the training dataset when fitting the final model, in this case, normalized.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+# load and prepare the image
+def load_image(filename):
+	# load the image
+	img = load_img(filename, grayscale=True, target_size=(28, 28))
+	# convert to array
+	img = img_to_array(img)
+	# reshape into a single sample with 1 channel
+	img = img.reshape(1, 28, 28, 1)
+	# prepare pixel data
+	img = img.astype('float32')
+	img = img / 255.0
+	return img
+</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">Next, we can load the model as in the previous section and call the predict_classes() function to predict the clothing in the image.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+# predict the class
+result = model.predict_classes(img)
+</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">The complete example is listed below.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+# make a prediction for a new image.
+from keras.preprocessing.image import load_img
+from keras.preprocessing.image import img_to_array
+from keras.models import load_model
+
+# load and prepare the image
+def load_image(filename):
+	# load the image
+	img = load_img(filename, grayscale=True, target_size=(28, 28))
+	# convert to array
+	img = img_to_array(img)
+	# reshape into a single sample with 1 channel
+	img = img.reshape(1, 28, 28, 1)
+	# prepare pixel data
+	img = img.astype('float32')
+	img = img / 255.0
+	return img
+
+# load an image and predict the class
+def run_example():
+	# load the image
+	img = load_image('sample_image.png')
+	# load model
+	model = load_model('final_model.h5')
+	# predict the class
+	result = model.predict_classes(img)
+	print(result[0])
+
+# entry point, run the example
+run_example()
+</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">Running the example first loads and prepares the image, loads the model, and then correctly predicts that the loaded image represents a pullover or class ‘2’.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+2
+</p>
+</code></pre></div></div>
 
 
 <!-- <span class="post-date">
