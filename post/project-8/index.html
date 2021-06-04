@@ -129,7 +129,7 @@ Right now it makes one prediction per photo,  so for this purpose auhtor make su
  The answer to this question allowed me to split the dataset and train on single-subject images.</p>
 
 <p style="text-align: justify"><b>Flickr/Google Image Search</b> - The clothing predictor model was trained with roughly one thousand photos per category, hand picked from query results on Google and Flickr.
-I tried to select photos with rich and diverese backdrops, as this helped the model generalize better when predicting photos of people in natural settings.</p>
+Here Author, tried to select photos with rich and diverese backdrops, as this helped the model generalize better when predicting photos of people in natural settings.</p>
 
 
 <h2 id="the-exponential-family">Let’s start building a Web App</h2>
@@ -204,9 +204,9 @@ def allowed_file(filename):
 </p>
 </code></pre></div></div>
 
-<p> <img src="/images/img.png" alt="img"> </p>
-
 <p style="text-align: justify">Figure below shows the layout of the build web app for predicting the clothing type.</p>
+
+<p> <img src="/images/img.png" alt="img"> </p>
 
 <h3 id="the-exponential-family">Predicting the Clothing type</h3>
 
@@ -266,8 +266,11 @@ def allowed_file(filename):
 <h3 id="the-exponential-family">Running the web app</h3>
 
 <p style="text-align: justify">We can run our web app on our local server with IP address: http://127.0.0.1:5000/predict. Here, we will upload the test images for predicting the clothing type.</p>
+
 <p style="text-align: justify">Below is the screenshot of the web app. Here, it has successfully predicted the clothing type here in this case it is a "Bag".</p>
-<p> <img src="bag.png" alt="bag"> </p>
+
+<p> <img src="/images/bag.png" alt="bag"> </p>
+
 <p style="text-align: justify">We successfully builded and run a clothing prediction web app in this article. The complete code for this article can be found <a href="https://github.com/tkhan11/WebApp-for-clothing-prediction"> here</a>.</p>
 
 <!-- <span class="post-date">
