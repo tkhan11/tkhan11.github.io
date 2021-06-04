@@ -1,232 +1,334 @@
-<!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!doctype html>
+<html>
 
-    <title>Web app for clothing prediction | Tanveer Khan</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.73.0" />
+<head>
+
+  <title>
+    Tanveer Khan
+  </title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="https://andrewcharlesjones.github.io/assets/css/main.css">
+  <link rel="stylesheet" href="https://andrewcharlesjones.github.io/assets/css/syntax.css">
+  <!-- Use Atom -->
+  <link type="application/atom+xml" rel="alternate" href="https://tkhan11.github.io/" title="Tanveer Khan" />
+  <!-- Use RSS-2.0 -->
+  <!--<link href="https://tkhan11.github.io" type="application/rss+xml" rel="alternate" title="Tanveer Khan | CS PhD scholar @ Jamia Millia Islamia"/>
+  //-->
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quattrocento+Sans">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+    MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      });
+  </script>
+
+  <!-- Google Analytics -->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-149140730-1', 'auto');
+  ga('send', 'pageview');
+</script>
 
 
-      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-
-
-
-
-      <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
-
-
-
-
-
-
-
-
-
-
-
-    <meta property="og:title" content="Web app for clothing prediction" />
+  <!-- Use Jekyll SEO plugin -->
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Clothing Predictor Web App | Tanveer Khan</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Clothing Predictor Web App  " />
+<meta name="author" content="Tanveer Khan" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="layout: post title: “Clothing Predictor Web App  ” author: “Tanveer Khan” categories: journal blurb: “” img: “” tags: [] —" />
+<meta property="og:description" content="layout: post title: “Clothing Predictor Web App  ” author: “Tanveer Khan” categories: journal blurb: “” img: “” tags: [] —" />
+<link rel="canonical" href="https://tkhan11.github.io/post/page/3/project-7/index.html" />
+<meta property="og:url" content="https://tkhan11.github.io/post/page/3/project-7/index.html" />
+<meta property="og:site_name" content="Tanveer Khan" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://example.com/post/project-2/" />
-<meta property="article:published_time" content="2020-04-10T11:00:59-04:00" />
-<meta property="article:modified_time" content="2020-04-10T11:00:59-04:00" />
-<meta itemprop="name" content="Web app for clothing prediction">
-<meta itemprop="description" content="Web app for clothing prediction">
-<meta itemprop="datePublished" content="2020-04-10T11:00:59-04:00" />
-<meta itemprop="dateModified" content="2020-04-10T11:00:59-04:00" />
-<meta itemprop="wordCount" content="127">
+<meta property="article:published_time" content="2021-04-14T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Clothing Predictor Web App " />
 
 
+<!--
+<script type="application/ld+json">
+{"datePublished":"2021-04-14T00:00:00+00:00","url":"https://tkhan11.github.io/post/page/3/project-7/generalized-pca.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://tkhan11.github.io/post/page/3/project-7/generalized-pca.html"},"author":{"@type":"Person","name":"Tanveer Khan"},"@context":"https://schema.org"}</script>
+ End Jekyll SEO tag -->
 
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Web app for clothing prediction"/>
-<meta name="twitter:description" content="Web app for clothing prediction"/>
 
+</head>
 
-  </head>
 
-  <body class="ma0 avenir bg-near-white">
 
+<body>
 
+  <div class="container">
+    <header class="masthead">
+  <h3 class="masthead-title">
+    <a href="https://tkhan11.github.io/">Tanveer Khan </a>
+    <small class="masthead-subtitle"> CS PhD scholar@ Jamia Millia Islamia</small>
 
+<!--
+    <div class="menu">
 
+  <nav class="social-icons">
 
-  <header>
-    <div class="bg-black">
-      <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l justify-between items-center center">
-    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+    <a href="https://github.com/tkhan11" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
 
-        Tanveer Khan
+    <a href="https://www.suraiyajabin.in/tanveer-ahmed-khan" target="_blank"><i class="fa fa-graduation-cap" aria-hidden="true"></i></a>
 
-    </a>
-    <div class="flex-l items-center">
+    <a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
 
+    <a>tanveer1910377@jmi.ac.in</a>
 
-
-        <ul class="pl0 mr3">
-
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/about/" title="About page">
-              About
-            </a>
-          </li>
-
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/publications/" title="Publications page">
-              Publications
-            </a>
-          </li>
-
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/post/" title="Projects page">
-              Projects
-            </a>
-          </li>
-
-        </ul>
-
-
-
-
-
-
-<a href="https://twitter.com/GoHugoIO" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Research link" rel="noopener" aria-label="follow on Research——Opens in a new window">
-  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
-
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
-</svg>
-</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-    </div>
-  </div>
-</nav>
-
-    </div>
-  </header>
-
-
-
-    <main class="pb7" role="main">
-
-
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
-    <header class="mt4 w-100">
-      <aside class="instapaper_ignoref b helvetica tracked">
-
-        PROJECTS
-      </aside>
-
-
-
-
-
-  <div id="sharing" class="mt3">
-
-
-    <a href="https://www.facebook.com/sharer.php?u=https://example.com/post/project-2/" class="facebook no-underline" aria-label="share on Facebook">
-      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-
-    </a>
-
-
-
-    <a href="https://twitter.com/share?url=https://example.com/post/project-2/&amp;text=Ball%20Image%20Classifier" class="twitter no-underline" aria-label="share on Twitter">
-      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
-
-    </a>
-
-
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://example.com/post/project-2/&amp;title=Ball%20Image%20Classifier" class="linkedin no-underline" aria-label="share on LinkedIn">
-      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
-</svg>
-
-    </a>
-  </div>
-
-
-      <h1 class="f1 athelas mt3 mb1">Web app for clothing prediction</h1>
-
-
-      <time class="f6 mv4 dib tracked" datetime="2020-04-10T11:00:59-04:00">April 10, 2020</time>
-
-
-
-    </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p style="text-align: justify">Fashion forecasting is a global career that focuses on upcoming trends. A fashion forecaster predicts the colors, fabrics, textures, materials, prints, graphics, beauty/grooming, accessories, footwear, street style, and other styles that will be presented on the runway and in the stores for the upcoming seasons.</p>
-      
-<figure>
-    <img src="/images/img.png"/>
-</figure>
-
-<p><a href="https://github.com/tkhan11/WebApp-for-clothing-prediction">Link to GitHub Repository</a></p>
-<ul class="pa0">
-
-</ul>
-<div class="mt6 instapaper_ignoref">
-
-
-      </div>
-    </div>
-
-    <aside class="w-30-l mt6-l">
-
-
-
-
-</aside>
-
-  </article>
-
-    </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
-  <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://tkhan11.github.io" >
-    &copy;  Tanveer Khan 2021
-  </a>
-    <div>
-
-
-
-
-<a href="https://twitter.com/GoHugoIO" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
-  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
-
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
-</svg>
-</span></a>
-
-
-
-
-
-
+ </nav>
 
 
 
 </div>
+-->
+
+  </h3>
+</header>
+
+
+    <div class="post-container">
+      <h1 style="line-height: 1.2;">
+  Clothing Predictor Web App
+</h1>
+
+<p style="text-align: justify">Flask web app that takes an Instagram handle or image URL as input. It looks for images with one person in them,
+   and then makes a prediction on what the person is wearing. Right now the model is trained on 13 different clothing categories.</p>
+
+<p style="text-align: justify">The objective here is to design a robust deep learning based clothing image classification tool for fashion industry.</p>
+
+<h2 id="the-exponential-family">Methodology</h2>
+
+
+<p style="text-align: justify">Using Keras, Author fine-tuned Google's Inception V3 in two different ways to build the app. Author trained a "filter model" to identify images with only one person in them.
+Right now it makes one prediction per photo,  so for this purpose auhtor make sured that app wasn't making a clothing prediction on inanimate objects or group photos.
+
+<p style="text-align: justify">The "clothing predictor model" is used to make the actual prediction on clothing type. Both models converged to accuracy levels of 85-90% on validation image sets.</p>
+
+<h3 id="the-exponential-family">Dataset</h3>
+
+<p style="text-align: justify"><a href="https://www.kaggle.com/zalando-research/fashionmnist/kernels">Fashion 1000</a> - This dataset included roughly 32,000 Flickr photos with mechanical turk annotations.
+ One of the questions asked of the annotators was "How many people are in this photo?".
+ The answer to this question allowed me to split the dataset and train on single-subject images.</p>
+
+<p style="text-align: justify"><b>Flickr/Google Image Search</b> - The clothing predictor model was trained with roughly one thousand photos per category, hand picked from query results on Google and Flickr.
+I tried to select photos with rich and diverese backdrops, as this helped the model generalize better when predicting photos of people in natural settings.</p>
+
+
+<h2 id="the-exponential-family">Let’s start building a Web App</h2>
+<p style="text-align: justify">Let’s start with loading all the libraries and dependencies.</p>
+
+<h3 id="the-exponential-family">Loading Pacakages</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+  import pandas as pd
+  import numpy as np
+  import tensorflow as tf
+  from keras.preprocessing.image import load_img
+  from keras.preprocessing.image import img_to_array
+  from keras.models import load_model
+  import os
+</p>
+</code></pre></div></div>
+
+<h3 id="the-exponential-family">Create Flask instance</h2>
+<p style="text-align: justify">We will create a Flask instance and set the maximum file size our app can take for processing.
+Furthermore, we will also set the file extension type our builded web app can process.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+# Create flask instance
+app = Flask(__name__)
+
+#Set Max size of file as 10MB.
+app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024
+
+#Allow files with extension png, jpg and jpeg
+ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg']
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+</p>
+</code></pre></div></div>
+
+<h3 id="the-exponential-family">Loading Images</h3>
+<p style="text-align: justify">Next, we will create a function for loading images for further processing.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+  # Function to load and prepare the image in right shape
+  def read_image(filename):
+      # Load the image
+      img = load_img(filename, grayscale=True, target_size=(28, 28))
+      # Convert the image to array
+      img = img_to_array(img)
+      # Reshape the image into a sample of 1 channel
+      img = img.reshape(1, 28, 28, 1)
+      # Prepare it as pixel data
+      img = img.astype('float32')
+      img = img / 255.0
+      return img
+
+  @app.route("/", methods=['GET', 'POST'])
+  def home():
+</p>
+</code></pre></div></div>
+
+<h3 id="the-exponential-family">Loading the Home page</h3>
+
+<p style="text-align: justify">Creating function for loading the home page.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+  @app.route("/", methods=['GET', 'POST'])
+  def home():
+
+      return render_template('home.html')
+</p>
+</code></pre></div></div>
+
+<p> <img src="/images/img.png" alt="img"> </p>
+
+<p style="text-align: justify">Figure below shows the layout of the build web app for predicting the clothing type.</p>
+
+<h3 id="the-exponential-family">Predicting the Clothing type</h3>
+
+<p style="text-align: justify">Here, we will create a function for predicting the clothing type. We will use a pre-trained model for this purpose, and we will define our main function.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+  @app.route("/predict", methods = ['GET','POST'])
+  def predict():
+      if request.method == 'POST':
+          file = request.files['file']
+          try:
+              if file and allowed_file(file.filename):
+                  filename = file.filename
+                  file_path = os.path.join('static/images', filename)
+                  file.save(file_path)
+                  img = read_image(file_path)
+                  # Predict the class of an image
+
+                  with graph.as_default():
+                      model1 = load_model('clothing_classification_model.h5')
+                      class_prediction = model1.predict_classes(img)
+                      print(class_prediction)
+
+                  #Map apparel category with the numerical class
+                  if class_prediction[0] == 0:
+                    product = "T-shirt/top"
+                  elif class_prediction[0] == 1:
+                    product = "Trouser"
+                  elif class_prediction[0] == 2:
+                    product = "Pullover"
+                  elif class_prediction[0] == 3:
+                    product = "Dress"
+                  elif class_prediction[0] == 4:
+                    product = "Coat"
+                  elif class_prediction[0] == 5:
+                    product = "Sandal"
+                  elif class_prediction[0] == 6:
+                    product = "Shirt"
+                  elif class_prediction[0] == 7:
+                    product = "Sneaker"
+                  elif class_prediction[0] == 8:
+                    product = "Bag"
+                  else:
+                    product = "Ankle boot"
+                  return render_template('predict.html', product = product, user_image = file_path)
+          except Exception as e:
+              return "Unable to read the file. Please check if the file extension is correct."
+
+      return render_template('predict.html')
+
+  if __name__ == "__main__":
+      init()
+      app.run()
+</p>
+</code></pre></div></div>
+
+<h3 id="the-exponential-family">Running the web app</h3>
+
+<p style="text-align: justify">We can run our web app on our local server with IP address: http://127.0.0.1:5000/predict. Here, we will upload the test images for predicting the clothing type.</p>
+<p style="text-align: justify">Below is the screenshot of the web app. Here, it has successfully predicted the clothing type here in this case it is a "Bag".</p>
+<p> <img src="bag.png" alt="bag"> </p>
+<p style="text-align: justify">We successfully builded and run a clothing prediction web app in this article. The complete code for this article can be found <a href="https://github.com/tkhan11/WebApp-for-clothing-prediction"> here</a>.</p>
+
+<!-- <span class="post-date">
+
+
+  May
+  10th,
+  2021
+  by
+
+    Tanveer Khan
+
+</span> -->
+
+<!-- <div class="post-date"></div>
+  <div class="sharing-icons">
+    <a href="https://twitter.com/intent/tweet?text=Generalized Principal Component Analysis (PCA)&amp;url="https://tkhan11.github.io/post/page/3/project-7/index.html" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u="https://tkhan11.github.io/post/page/3/project-7/index.html"&amp;title="Data Visualization in Python" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
   </div>
+</div>
+ -->
+
+<!-- <div class="related">
+  <h1 ></h1>
+
+  <ul class="related-posts">
+
+  </ul>
+</div>
+ -->
+
+
+
+    </div>
+
+    <footer class="footer">
+  <!--
+
+
+    <a href="https://github.com/tkhan11" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+
+
+
+
+    <a href="https://suraiyajabin.in/tanveer-ahmed-khan" target="_blank"><i class="fa fa-graduation-cap" aria-hidden="true"></i></a>
+
+
+
+
+    <a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+
+
+
+
+    <a>tanveer1910377@jmi.ac.in</a>
+
+ -->
+  <div class="post-date"><a href="https://tkhan11.github.io/about/">Tanveer Khan | CS PhD scholar @ Jamia Millia Islamia</a></div>
 </footer>
 
+  </div>
 
-
-  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
-
-
-  </body>
+</body>
 </html>
