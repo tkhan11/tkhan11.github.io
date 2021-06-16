@@ -130,7 +130,7 @@ Deep learning based sentiment analysis of drug reviews
   <li> Training model using hold-out.</li>
   <li> Train and Test set, following the 75-25% split ratio</li>
   <li> 90-10% split ratio of train dataset into train and validation set, for model training.</li>
-  
+
 </ul>
 
 
@@ -245,13 +245,13 @@ Prediction_Train_data = Prediction_Train_data[Prediction_Train_data.report.apply
 Prediction_Test_data = Prediction_Test_data[Prediction_Test_data.report.apply(lambda x: x !="")]
 
 def process_text(report):
-    
+
     # Remove puncuation
     report = report.translate(string.punctuation)
-    
+
     # Convert words to lower case and split them
     report = report.lower().split()
-    
+
     # Remove stop words
 
     #stop_words = set(stopwords.words("english"))
@@ -355,9 +355,9 @@ Sentiment_labels = ['Negative', 'Neutral', 'Positive']              #  0:Negativ
 model = Sequential()
 model.add(Embedding(10000, 100, input_length=100))
 model.add(LSTM(100, dropout=0.2, recurrent_dropout=0.2))
-model.add(Dense(64, activation='sigmoid'))       
-model.add(Dense(32, activation='sigmoid'))         
-model.add(Dense(3, activation='softmax'))   
+model.add(Dense(64, activation='sigmoid'))
+model.add(Dense(32, activation='sigmoid'))
+model.add(Dense(3, activation='softmax'))
 
 # Compile the model
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -373,7 +373,7 @@ batch_size = 128
 #  Train the model
 history = model.fit(Report_train_padded, Sentiment_train_onehot_encoded,
                     validation_split=0.1, batch_size = batch_size, epochs= num_epochs)
-                        
+
 </p>
 </code></pre></div></div>
 
@@ -394,8 +394,8 @@ print("\n","stop time:", time_stop,"\n")
 
 # Predict the values from the Test dataset
 Sentiment_pred = model.predict(Report_test_padded)
-# Convert predictions classes to one hot vectors 
-Sentiment_pred_classes = np.argmax(Sentiment_pred,axis = 1) 
+# Convert predictions classes to one hot vectors
+Sentiment_pred_classes = np.argmax(Sentiment_pred,axis = 1)
 # computing the confusion matrix
 confusion_mtx = confusion_matrix(Sentiment_test_integ
 </p>
@@ -429,7 +429,7 @@ print('Cohen_score: %f' % cohen_score)
 <p>
 # Training and validation curves
 
-# Plot the loss and accuracy curves for training and validation 
+# Plot the loss and accuracy curves for training and validation
 fig, ax = plt.subplots(2,1)
 ax[0].plot(history.history['loss'], color='b', label="Training loss")
 ax[0].plot(history.history['val_loss'], color='r', label="validation loss",axes =ax[0])
@@ -452,7 +452,7 @@ plt.show()
 <h3 id="the-exponential-family">Plotting the confusion matrix </h3>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <p>
-# Defining function for plotting confusion matrix  
+# Defining function for plotting confusion matrix
 
 def plot_confusion_matrix(cm, classes,
                           normalize=False,
@@ -485,7 +485,7 @@ def plot_confusion_matrix(cm, classes,
 
 
 # plot the confusion matrix
-plot_confusion_matrix(confusion_mtx, classes = range(3)) 
+plot_confusion_matrix(confusion_mtx, classes = range(3))
 </p>
 </code></pre></div></div>
 
