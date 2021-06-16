@@ -114,7 +114,7 @@ Deep learning based sentiment analysis of drug reviews
 
 <h2 id="the-exponential-family">Objective</h2>
 
-<p style="text-align: justify"> The proposed objective is to perform sentiment analysis of drug reviews using deep learning techniques. </p>
+<p style="text-align: justify"> The proposed objective is to perform the sentiment analysis of drug reviews using deep learning techniques. </p>
 
 
 <h2 id="the-exponential-family">Dataset</h2>
@@ -136,7 +136,7 @@ Deep learning based sentiment analysis of drug reviews
 
 
 <h2 id="the-exponential-family">Methodology</h2>
-<p style="text-align: justify">The proposed methodology for building a deep learning model for sentiment analysis og drug reviews has following steps:</p>
+<p style="text-align: justify">The proposed methodology for building a deep learning model for sentiment analysis on drug reviews has the following steps:</p>
 
 <h3 id="the-exponential-family">Importing packages</h3>
 
@@ -179,7 +179,7 @@ from sklearn.model_selection import StratifiedKFold
 </code></pre></div></div>
 
 <h3 id="the-exponential-family">Data Acquisition</h3>
-<p style="text-align: justify">For this purpose python pandas library is used to read the tsv files and save it in working directory for further processing.</p>
+<p style="text-align: justify">For this purpose python pandas library is used to read the tsv files and load it in the working directory for further processing.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <p>
@@ -193,7 +193,7 @@ Test_dataset=pd.read_csv('C:\\Users\\tanveerlaptop\\Desktop\\miscellaneous\\Prog
 </code></pre></div></div>
 
 <h3 id="the-exponential-family">Data Pre-processing</h3>
-<p style="text-align: justify">In this phase we will prepare our data for predicting patient satisfaction based on rating and all reviews. We will perform concatanation to join benifits_review, side_effects_review and comments into a "report" attribute to predict the overall satisfaction of patients. Furthermore, labeling of ratings as Postive, Negative and Neutral for sentiment classification.</p>
+<p style="text-align: justify">In this phase we will prepare our data for predicting patient satisfaction based on "rating" and "reviews". We will perform concatanation to join the "benifits_review", "side_effects_review" and "comments" into a "report" attribute to predict the overall satisfaction of the patients. Furthermore, labeling of ratings as Postive, Negative and Neutral for the sentiment classification.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <p>
@@ -211,7 +211,7 @@ Prediction_Test_data = pd.DataFrame({'rating':Test_dataset.rating,
                                      'side_effects_reviews':Test_dataset.sideEffectsReview,
                                      'comments':Test_dataset.commentsReview})
 
-# performing concatanation to join benifits_review, side_effects_review and comments into a Report attribute to predict the overall satisfaction of patients
+# performing concatanation to join benifits_review, side_effects_review and comments into a Report attribute to predict the overall satisfaction of the patients
 
 report=['benefits_reviews','side_effects_reviews','comments']
 
@@ -294,7 +294,7 @@ Report_test = Prediction_Test_data['report'
 
 
 <h3 id="the-exponential-family">Preparing data for our LSTM model </h3>
-<p style="text-align: justify">For supplying data to the deep learning model Long short term memory (LSTM), we will convert our text data into one hot encoded data. Further, we will tokenize our encoded data and will create sequences for the training and test sets of data.</p>
+<p style="text-align: justify">For supplying data to the deep learning model Long short term memory (LSTM), we will convert our text data into one hot encoded data. Further, we will tokenize our encoded data and will create sequences for the training and test sets of the data.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <p>
@@ -496,7 +496,7 @@ plot_confusion_matrix(confusion_mtx, classes = range(3))
 
 
 <h2 id="the-exponential-family">Conclusion</h2>
-<p style="text-align: justify">In this article, we build and test our deep learning based LSTM model for sentiment analysis of drug review data. Our proposed model achieved an accuracy of 58% in correctly predicting the sentiment of patients as positve, negative or neutral. Best results in accuracy obtained when the number of epochs set to 10, further increasing the number of epochs decreased the accuracy of the model. Less accuracy may be attributed to fewer data available for training.	 </p>
+<p style="text-align: justify">In this article, we build and tested our deep learning based LSTM model for the sentiment analysis of drug review data. Our proposed model achieved an accuracy of 58% in correctly predicting the sentiment of the patients as positve, negative or neutral. Best results in the accuracy obtained when the number of epochs were set to 10, further increasing the number of epochs decreased the accuracy of the model. Less accuracy may be attributed to the fewer data available for the training purpose.	 </p>
 
 <!-- <span class="post-date">
 
