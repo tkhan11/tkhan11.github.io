@@ -82,19 +82,29 @@
 
 
     <div class="menu">
- 
+
+      <nav class="menu-content">
+
+          <a href="https://tkhan11.github.io/blog/blog.html">Blog</a>
+
+          <a href="https://tkhan11.github.io/publications/">Publications</a>
+
+        <!--  <a href="https://tkhan11.github.io/publications/files/Tanveer_Khan_CV.pdf">CV</a>
+     -->
+      </nav>
+      
   <nav class="social-icons">
-   
+
     <a href="https://github.com/tkhan11" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
-  
+
     <a href="https://www.suraiyajabin.in/tanveer-ahmed-khan" target="_blank"><i class="fa fa-graduation-cap" aria-hidden="true"></i></a>
-  
+
     <a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
 
     <a>tanveer1910377@st.jmi.ac.in</a>
 
  </nav>
-	
+
 
 
 </div>
@@ -339,10 +349,10 @@ Analysis to the Exponential Family”</a>. The rest of this post explores the de
 
 <span class="k">def</span> <span class="nf">bernoulli_likelihood_A</span><span class="p">(</span><span class="n">curr_A</span><span class="p">):</span>
     <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">X</span><span class="p">.</span><span class="n">T</span><span class="p">,</span> <span class="n">X</span><span class="p">)))</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">curr_A</span><span class="p">,</span> <span class="n">V</span><span class="p">),</span> <span class="n">X</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">curr_A</span><span class="p">,</span> <span class="n">V</span><span class="p">))))</span>
-    
+
 <span class="k">def</span> <span class="nf">bernoulli_likelihood_V</span><span class="p">(</span><span class="n">curr_V</span><span class="p">):</span>
     <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">X</span><span class="p">.</span><span class="n">T</span><span class="p">,</span> <span class="n">X</span><span class="p">)))</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">curr_V</span><span class="p">),</span> <span class="n">X</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">curr_V</span><span class="p">))))</span>
-    
+
 <span class="n">num_iters</span> <span class="o">=</span> <span class="mi">500</span>
 
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">))</span>
@@ -355,7 +365,7 @@ Analysis to the Exponential Family”</a>. The rest of this post explores the de
 <span class="k">for</span> <span class="n">iter_num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_iters</span><span class="p">):</span>
     <span class="n">curr_grad_A</span> <span class="o">=</span> <span class="n">A_grad</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
     <span class="n">curr_grad_V</span> <span class="o">=</span> <span class="n">V_grad</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
-    
+
     <span class="n">A</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">curr_grad_A</span>
     <span class="n">V</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">curr_grad_V</span>
 </code></pre></div></div>
@@ -377,15 +387,15 @@ Analysis to the Exponential Family”</a>. The rest of this post explores the de
 
 
 <!-- <span class="post-date">
-  
-  
+
+
   April
   14th,
   2021
   by
-  
+
     Tanveer Khan
-  
+
 </span> -->
 
 <!-- <div class="post-date"></div>
@@ -398,9 +408,9 @@ Analysis to the Exponential Family”</a>. The rest of this post explores the de
 
 <!-- <div class="related">
   <h1 ></h1>
-  
+
   <ul class="related-posts">
-    
+
   </ul>
 </div>
  -->
@@ -410,26 +420,26 @@ Analysis to the Exponential Family”</a>. The rest of this post explores the de
     </div>
 
     <footer class="footer">
-  <!-- 
-  
-  
+  <!--
+
+
     <a href="https://github.com/tkhan11" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
-  
 
-  
-  
+
+
+
     <a href="https://suraiyajabin.in/tanveer-ahmed-khan" target="_blank"><i class="fa fa-graduation-cap" aria-hidden="true"></i></a>
-  
 
-  
-  
+
+
+
     <a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-  
 
-  
-  
+
+
+
     <a>tanveer1910377@jmi.ac.in</a>
-  
+
  -->
   <div class="post-date"><a href="https://tkhan11.github.io/about/">Tanveer Khan | CS PhD scholar @ Jamia Millia Islamia</a></div>
 </footer>
