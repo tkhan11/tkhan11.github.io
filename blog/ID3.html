@@ -438,7 +438,7 @@ tree_clf.printTree()
   <img src="/images/ID3res.png" alt="ID3res">
 </p>
 
-<p style="text-align: justify">Here, in results the system entropy obtained is 0.9403 and the attribute with maximum information gain is Outlook thereby making it a root node. </p>
+<p style="text-align: justify">Here, in results the system entropy obtained is <strong>0.9403</strong> and the attribute with maximum information gain is "Outlook" thereby making it a root node. </p>
 
 
 <p style="text-align: justify">Figure below shows the obtained decision tree for the prediciton of playing tennis based on the weather conditions.</p>
@@ -448,8 +448,8 @@ tree_clf.printTree()
   <img src="/images/ID3.png" alt="ID3">
 </p>
 
-<p style="text-align: justify">Here, when Outlook = Rain and Wind = Strong, it is a pure class of category "no".
-  And When Outlook = Rain and Wind = Weak, it is again a pure class of category "yes". The figure plotted above is the final desired tree for our given weather dataset.</p>
+<p style="text-align: justify">Here, when "Outlook = Rain" and "Wind = Strong", it is a pure class of category "no".
+  And When "Outlook = Rain" and "Wind = Weak", it is again a pure class of category "yes". The figure plotted above is the final desired tree for our given weather dataset.</p>
 
 <h2 id="the-exponential-family">Conclusion</h2>
  <p style="text-align: justify">
@@ -458,9 +458,9 @@ ID3 builds a short tree in relatively small time and it only needs to test enoug
 generalizability.</p>
 
 <p style="text-align: justify">
-  However ID3 algorithm suffer from issues like, Data may be over-fitted or over-classified, if a small sample is tested.
+  However ID3 algorithm suffer from issues like, data may be over-fitted or over-classified, if a small sample is tested.
 and only one attribute at a time is tested for making a decision. Continuous and missing values are not handled properly in ID3.
-Thus, for this purpose advanced versions of ID3 that are C4.5 and C5.0 were introduced later by Ross Quinlan.
+Thus, for this purpose advanced versions of ID3, that are C4.5 and C5.0 were introduced later by Ross Quinlan.
 </p>
 
 <!-- <span class="post-date">
