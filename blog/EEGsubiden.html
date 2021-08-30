@@ -138,14 +138,14 @@ Electroencephalography (EEG) based subject identification
 </p>
 
 <h2 id="the-exponential-family">Methodology</h2>
-<p style="text-align: justify"> Typical EEG subject identification pipeline includes tasks such as, <strong>signal-acquisition</strong>, <strong>signal pre-processing</strong>, <strong>features extraction</strong>, and <strong>classification</strong> phase. Here, our
+<p style="text-align: justify"> Typical EEG subject identification pipeline includes tasks such as: <strong>signal-acquisition</strong>, <strong>signal pre-processing</strong>, <strong>features extraction</strong>, and <strong>classification</strong> phase. Here, our
   EEG data is already in acquired form so, we can start from the next phase in the pipeline which is the signal pre-processing phase.
 </p>
 
 
 
 
-<h3 id="the-exponential-family">Signal pre-processing</h2>
+<h3 id="the-exponential-family">1) Signal pre-processing</h2>
 <p style="text-align: justify">Here we will filter our EEG dataset to remove noise and artifacts. For this purpose, we will use butterworth filter.</p>
 
 <h3 id="the-exponential-family"><i>Importing packages</i></h3>
@@ -206,7 +206,7 @@ Electroencephalography (EEG) based subject identification
 </p>
 </code></pre></div></div>
 
-<h3 id="the-exponential-family">Feature extraction</h3>
+<h3 id="the-exponential-family">2) Feature extraction</h3>
 <p style="text-align: justify"> From the pre-processed EEG signal 17 features which incldes statistical, entropy, and energy features were extracted.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
@@ -328,7 +328,7 @@ print("All features were extracted and saved")
 </p>
 <p style="text-align: center"><i>Figure 1. </i> Features Map.</p>
 
-<h3 id="the-exponential-family">Data preparation for classification of subjects</h3>
+<h3 id="the-exponential-family">3) Data preparation for classification of subjects</h3>
 <p style="text-align: justify">For supplying data to the neural network model, we will label our data.
   Further, we will split our labelled dataset into train, test and validation sets.</p>
 
@@ -369,7 +369,7 @@ print("All features were extracted and saved")
 </code></pre></div></div>
 
 
-<h3 id="the-exponential-family">Building our Neural network classification model</h3>
+<h4 id="the-exponential-family">3.1) Building our Neural network classification model</h3>
 <p style="text-align: justify">For performing the identification task Artificial neural network (ANN) was used.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <p>
@@ -412,7 +412,7 @@ print("All features were extracted and saved")
 </p>
 </code></pre></div></div>
 
-<h3 id="the-exponential-family">Model Evaluation</h3>
+<h4 id="the-exponential-family">3.2) Model Evaluation</h3>
 <p style="text-align: justify">Here, we will evaluate our build NN model perfromance in terms of training-validation accuracy and train-validation loss.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <p>
@@ -459,7 +459,7 @@ print("All features were extracted and saved")
 </p>
 <p style="text-align: center"><i>Figure 3.</i> Training-validation accuracy curve.</p>
 
-<h3 id="the-exponential-family">Neural Network model evaluation on test data</h3>
+<h4 id="the-exponential-family">3.3) Neural Network model evaluation on test data</h3>
 <p style="text-align: justify">Evaluating our NN model on test data and making predictions.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <p>
@@ -474,7 +474,7 @@ ANN_Pred = pd.Series(Pred)
 </p>
 </code></pre></div></div>
 
-<h3 id="the-exponential-family">Results</h3>
+<h4 id="the-exponential-family">3.4) Results</h3>
 <p style="text-align: justify">For the evaluation of the perfromance of our NN classification model we will use standard metrics and plot the confusion matrix for the same.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <p>
