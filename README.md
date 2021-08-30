@@ -1,6 +1,4 @@
 ﻿# tkhan11.github.io 
 
-Tanveer Ahmed Khan JAIRG
-
-**Blog by Tanveer Khan 
+Blog by Tanveer Ahmed Khan member of Jamia Artificial Intelligence Research Group (JAIRG)
 
