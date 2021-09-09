@@ -370,7 +370,7 @@ template {
 /* Modules */
 
 /*
- 
+
   BOX SIZING
 
 */
@@ -403,7 +403,7 @@ blockquote,
 figcaption,
 figure,
 textarea,
-table, 
+table,
 td,
 th,
 tr,
@@ -435,6 +435,9 @@ input[type="url"],
  * </div>
  *
  * */
+ main {
+   background-color: white;
+ }
 
 .aspect-ratio {
   height: 0;
@@ -626,109 +629,109 @@ img { max-width: 100%; }
 
  */
 
-.bg-center { 
+.bg-center {
   background-repeat: no-repeat;
-  background-position: center center; 
+  background-position: center center;
 }
 
-.bg-top {    
-  background-repeat: no-repeat; 
-  background-position: top center;    
+.bg-top {
+  background-repeat: no-repeat;
+  background-position: top center;
 }
 
-.bg-right {  
-  background-repeat: no-repeat; 
-  background-position: center right;  
+.bg-right {
+  background-repeat: no-repeat;
+  background-position: center right;
 }
 
-.bg-bottom { 
-  background-repeat: no-repeat; 
-  background-position: bottom center; 
+.bg-bottom {
+  background-repeat: no-repeat;
+  background-position: bottom center;
 }
 
-.bg-left {   
-  background-repeat: no-repeat; 
-  background-position: center left;   
+.bg-left {
+  background-repeat: no-repeat;
+  background-position: center left;
 }
 
 @media screen and (min-width: 30em) {
-  .bg-center-ns { 
+  .bg-center-ns {
     background-repeat: no-repeat;
-    background-position: center center; 
+    background-position: center center;
   }
 
-  .bg-top-ns {    
-    background-repeat: no-repeat; 
-    background-position: top center;    
+  .bg-top-ns {
+    background-repeat: no-repeat;
+    background-position: top center;
   }
 
-  .bg-right-ns {  
-    background-repeat: no-repeat; 
-    background-position: center right;  
+  .bg-right-ns {
+    background-repeat: no-repeat;
+    background-position: center right;
   }
 
-  .bg-bottom-ns { 
-    background-repeat: no-repeat; 
-    background-position: bottom center; 
+  .bg-bottom-ns {
+    background-repeat: no-repeat;
+    background-position: bottom center;
   }
 
-  .bg-left-ns {   
-    background-repeat: no-repeat; 
-    background-position: center left;   
+  .bg-left-ns {
+    background-repeat: no-repeat;
+    background-position: center left;
   }
 }
 
 @media screen and (min-width: 30em) and (max-width: 60em) {
-  .bg-center-m { 
+  .bg-center-m {
     background-repeat: no-repeat;
-    background-position: center center; 
+    background-position: center center;
   }
 
-  .bg-top-m {    
-    background-repeat: no-repeat; 
-    background-position: top center;    
+  .bg-top-m {
+    background-repeat: no-repeat;
+    background-position: top center;
   }
 
-  .bg-right-m {  
-    background-repeat: no-repeat; 
-    background-position: center right;  
+  .bg-right-m {
+    background-repeat: no-repeat;
+    background-position: center right;
   }
 
-  .bg-bottom-m { 
-    background-repeat: no-repeat; 
-    background-position: bottom center; 
+  .bg-bottom-m {
+    background-repeat: no-repeat;
+    background-position: bottom center;
   }
 
-  .bg-left-m {   
-    background-repeat: no-repeat; 
-    background-position: center left;   
+  .bg-left-m {
+    background-repeat: no-repeat;
+    background-position: center left;
   }
 }
 
 @media screen and (min-width: 60em) {
-  .bg-center-l { 
+  .bg-center-l {
     background-repeat: no-repeat;
-    background-position: center center; 
+    background-position: center center;
   }
 
-  .bg-top-l {    
-    background-repeat: no-repeat; 
-    background-position: top center;    
+  .bg-top-l {
+    background-repeat: no-repeat;
+    background-position: top center;
   }
 
-  .bg-right-l {  
-    background-repeat: no-repeat; 
-    background-position: center right;  
+  .bg-right-l {
+    background-repeat: no-repeat;
+    background-position: center right;
   }
 
-  .bg-bottom-l { 
-    background-repeat: no-repeat; 
-    background-position: bottom center; 
+  .bg-bottom-l {
+    background-repeat: no-repeat;
+    background-position: bottom center;
   }
 
-  .bg-left-l {   
-    background-repeat: no-repeat; 
-    background-position: center left;   
+  .bg-left-l {
+    background-repeat: no-repeat;
+    background-position: center left;
   }
 }
 
@@ -2022,6 +2025,24 @@ code, .code {
 
 /* Sans-Serif Typefaces */
 
+
+.arial {
+  font-family: "Arial Black",
+               sans-serif;
+}
+
+.segoe {
+  font-family: "Segoe UI",
+               sans-serif;
+}
+
+
+
+.verdana {
+  font-family: "Verdana",
+               sans-serif;
+}
+
 .helvetica {
   font-family: 'helvetica neue', helvetica,
                sans-serif;
@@ -2064,6 +2085,7 @@ code, .code {
   font-family: garamond,
                serif;
 }
+
 
 .baskerville {
   font-family: baskerville,
@@ -2194,7 +2216,7 @@ code, .code {
 /*
 
    FORMS
-   
+
 */
 
 .input-reset {
@@ -2939,8 +2961,8 @@ code, .code {
    Docs: http://tachyons.io/docs/themes/skins/
 
    Classes for setting foreground and background colors on elements.
-   If you haven't declared a border color, but set border on an element, it will 
-   be set to the current text color. 
+   If you haven't declared a border color, but set border on an element, it will
+   be set to the current text color.
 
 */
 
@@ -3174,46 +3196,46 @@ code, .code {
 
 .bg-inherit { background-color: inherit; }
 
-/* 
-  
+/*
+
    SKINS:PSEUDO
 
    Customize the color of an element when
    it is focused or hovered over.
- 
+
  */
 
-.hover-black:hover, 
+.hover-black:hover,
 .hover-black:focus { color: #000; }
 
-.hover-near-black:hover, 
+.hover-near-black:hover,
 .hover-near-black:focus { color: #111; }
 
-.hover-dark-gray:hover, 
+.hover-dark-gray:hover,
 .hover-dark-gray:focus { color: #333; }
 
-.hover-mid-gray:hover, 
+.hover-mid-gray:hover,
 .hover-mid-gray:focus { color: #555; }
 
-.hover-gray:hover, 
+.hover-gray:hover,
 .hover-gray:focus { color: #777; }
 
-.hover-silver:hover, 
+.hover-silver:hover,
 .hover-silver:focus { color: #999; }
 
-.hover-light-silver:hover, 
+.hover-light-silver:hover,
 .hover-light-silver:focus { color: #aaa; }
 
-.hover-moon-gray:hover, 
+.hover-moon-gray:hover,
 .hover-moon-gray:focus { color: #ccc; }
 
-.hover-light-gray:hover, 
+.hover-light-gray:hover,
 .hover-light-gray:focus { color: #eee; }
 
-.hover-near-white:hover, 
+.hover-near-white:hover,
 .hover-near-white:focus { color: #f4f4f4; }
 
-.hover-white:hover, 
+.hover-white:hover,
 .hover-white:focus { color: #fff; }
 
 .hover-black-90:hover,
@@ -3273,40 +3295,40 @@ code, .code {
 .hover-inherit:hover,
 .hover-inherit:focus { color: inherit; }
 
-.hover-bg-black:hover, 
+.hover-bg-black:hover,
 .hover-bg-black:focus { background-color: #000; }
 
-.hover-bg-near-black:hover, 
+.hover-bg-near-black:hover,
 .hover-bg-near-black:focus { background-color: #111; }
 
-.hover-bg-dark-gray:hover, 
+.hover-bg-dark-gray:hover,
 .hover-bg-dark-gray:focus { background-color: #333; }
 
-.hover-bg-mid-gray:hover, 
+.hover-bg-mid-gray:hover,
 .hover-bg-mid-gray:focus { background-color: #555; }
 
-.hover-bg-gray:hover, 
+.hover-bg-gray:hover,
 .hover-bg-gray:focus { background-color: #777; }
 
-.hover-bg-silver:hover, 
+.hover-bg-silver:hover,
 .hover-bg-silver:focus { background-color: #999; }
 
-.hover-bg-light-silver:hover, 
+.hover-bg-light-silver:hover,
 .hover-bg-light-silver:focus { background-color: #aaa; }
 
-.hover-bg-moon-gray:hover, 
+.hover-bg-moon-gray:hover,
 .hover-bg-moon-gray:focus { background-color: #ccc; }
 
-.hover-bg-light-gray:hover, 
+.hover-bg-light-gray:hover,
 .hover-bg-light-gray:focus { background-color: #eee; }
 
-.hover-bg-near-white:hover, 
+.hover-bg-near-white:hover,
 .hover-bg-near-white:focus { background-color: #f4f4f4; }
 
-.hover-bg-white:hover, 
+.hover-bg-white:hover,
 .hover-bg-white:focus { background-color: #fff; }
 
-.hover-bg-transparent:hover, 
+.hover-bg-transparent:hover,
 .hover-bg-transparent:focus { background-color: transparent; }
 
 .hover-bg-black-90:hover,
@@ -5498,11 +5520,11 @@ code, .code {
   cursor: pointer;
 }
 
-/* 
+/*
    Add shadow on hover.
 
-   Performant box-shadow animation pattern from 
-   http://tobiasahlin.com/blog/how-to-animate-box-shadow/ 
+   Performant box-shadow animation pattern from
+   http://tobiasahlin.com/blog/how-to-animate-box-shadow/
 */
 
 .shadow-hover {
@@ -5530,13 +5552,13 @@ code, .code {
   opacity: 1;
 }
 
-/* Combine with classes in skins and skins-pseudo for 
+/* Combine with classes in skins and skins-pseudo for
  * many different transition possibilities. */
 
 .bg-animate,
 .bg-animate:hover,
 .bg-animate:focus {
-  transition: background-color .15s ease-in-out; 
+  transition: background-color .15s ease-in-out;
 }
 
 /*
