@@ -436,6 +436,10 @@ input[type="url"],
  *
  * */
 
+main {
+   background-color: white;
+ }
+
 .aspect-ratio {
   height: 0;
   position: relative;
@@ -2033,6 +2037,11 @@ code, .code {
 }
 
 /* Serif Typefaces */
+
+.arial {
+  font-family: "Arial Black",
+               sans-serif;
+}
 
 .athelas {
   font-family: athelas,
