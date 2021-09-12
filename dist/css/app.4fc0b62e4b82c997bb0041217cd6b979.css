@@ -5810,7 +5810,7 @@ pre {
   margin-bottom: 1em;
 }
 
-.facebook, .twitter, .instagram, .youtube, .github, .gitlab, .keybase, .linkedin, .medium, .mastodon, .slack, .stackoverflow, .rss {
+.facebook, .twitter, .instagram, .youtube, .github, .gitlab, .keybase, .linkedin, .medium, .mastodon, .slack, .orcid, .stackoverflow, .rss {
   fill: #BABABA;
 }
 
@@ -5822,6 +5822,10 @@ pre {
 
 .link-transition:hover .new-window{
   opacity: 1;
+}
+
+.orcid:hover {
+  fill: #f48024;
 }
 
 .facebook:hover {
