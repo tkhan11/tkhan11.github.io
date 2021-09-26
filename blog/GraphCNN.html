@@ -523,9 +523,9 @@ Nodes shape: (2708, 1433)
 
 <p style="text-align: justify">The GNN classification model follows the Design Space for Graph Neural Networks approach, as follows:</p>
 
-<p style="text-align: justify">1. Apply preprocessing using FFN to the node features to generate initial node representations.</p>
+<p style="text-align: justify">1. Apply preprocessing to the node features to generate initial node representations.</p>
 <p style="text-align: justify">2. Apply one or more graph convolutional layer, with skip connections, to the node representation to produce node embeddings.</p>
-<p style="text-align: justify">3. Apply post-processing using FFN to the node embeddings to generat the final node embeddings.</p>
+<p style="text-align: justify">3. Apply post-processing to the node embeddings to generat the final node embeddings.</p>
 <p style="text-align: justify">4. Feed the node embeddings in a Softmax layer to predict the node class.</p>
 
 <p style="text-align: justify">Each graph convolutional layer added captures information from a further level of neighbours. However, adding many graph convolutional layer can cause oversmoothing, where the model produces similar embeddings for all the nodes.</p>
