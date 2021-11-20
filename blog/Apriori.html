@@ -170,8 +170,8 @@ Market basket analysis using Apriori algorithm
 
 <h2 id="the-exponential-family">Steps Involved in Apriori Algorithm</h2>
 <p style="text-align: justify">For large sets of data, there can be hundreds of items in hundreds of thousands transactions. The Apriori algorithm tries to extract rules
- for each possible combination of items. For instance, Lift can be calculated for item 1 and item 2, item 1 and item 3, item 1 and item 4 and
-  then item 2 and item 3, item 2 and item 4 and then combinations of items e.g. item 1, item 2 and item 3; similarly item 1, item2, and item 4, and so on.</p>
+ for each possible combination of items. For instance, Lift can be calculated for (Item 1, Item 2), (Item 1, Item 3), (Item 1, Item 4), and then (Item 2, Item 3), (Item 2, Item 4),
+ and then combinations of items e.g. (Item 1, Item 2, Item 3); similarly (Item 1, Item2, Item 4), and so on.</p>
 
 <p style="text-align: justify">As you can see from the above example, this process can be extremely slow due to the number of combinations.
 To speed up the process, we need to perform the following steps:</p>
@@ -259,7 +259,7 @@ print("\nOne hot encoded data:\n", encoded_data.head(10),"\n")
   <p style="text-align: justify">The apriori class requires some parameter values to work. The first parameter is the one-hot encoded dataframe that we want to extract rules from.
   The second parameter is the min_support parameter. This parameter is used to select the items with support values greater than the value specified by the parameter.
    Next, the use_colnames parameter that If True, uses the DataFrames' column names in the returned DataFrame instead of column indices. Other parameter max_len
-   takes the value for maximum length of the itemsets generated. Finally, the verboe parameter shows the number of iterations. Executing the following script we can have our frequent itemsets generated:</p>
+   takes the value for maximum length of the itemsets generated. Finally, the verbose parameter shows the number of iterations. Executing the following script we can have our frequent itemsets generated:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <p>
