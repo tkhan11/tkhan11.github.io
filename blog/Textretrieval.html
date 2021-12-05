@@ -1,0 +1,422 @@
+<!doctype html>
+<html>
+
+<head>
+
+  <title>
+    Tanveer Ahmed Khan JAIRG
+  </title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="./dist/css/main.css">
+  <link rel="stylesheet" href="./dist/css/syntax.css">
+ 
+<!-- Use Atom -->
+  <link type="application/atom+xml" rel="alternate" href="https://tkhan11.github.io/" title="Tanveer Khan" />
+  <!-- Use RSS-2.0 -->
+  <!--<link href="https://tkhan11.github.io" type="application/rss+xml" rel="alternate" title="Tanveer Khan | CS PhD scholar @ Jamia Millia Islamia"/>
+  //-->
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quattrocento+Sans">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+    MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      });
+  </script>
+
+  <!-- Google Analytics -->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-149140730-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <!-- Use Jekyll SEO plugin -->
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Gene Expression Classification| Tanveer Khan</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Natural Language Processing Based Text Retrieval System" />
+<meta name="author" content="Tanveer Khan" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="layout: post title: “Natural Language Processing Based Text Retrieval System” author: “Tanveer Khan” categories: journal blurb: “” img: “” tags: [] —" />
+<meta property="og:description" content="layout: post title: “Natural Language Processing Based Text Retrieval System” author: “Tanveer Khan” categories: journal blurb: “” img: “” tags: [] —" />
+<link rel="canonical" href="https://tkhan11.github.io/blog/Textretrieval.html" />
+<meta property="og:url" content="https://tkhan11.github.io/blog/Textretrieval.html" />
+<meta property="og:site_name" content="Tanveer Khan" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-12-5T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Natural Language Processing Based Text Retrieval System" />
+
+
+
+<script type="application/ld+json">
+{"datePublished":"2021-11-2T00:00:00+00:00","url":"https://tkhan11.github.io/blog/Textretrieval.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://tkhan11.github.io/blog/Textretrieval.html"},"author":{"@type":"Person","name":"Tanveer Khan"},"@context":"https://schema.org"}</script>
+
+
+
+</head>
+
+
+
+<body>
+
+  <div class="container">
+    <header class="masthead">
+  <h3 class="masthead-title">
+    <a href="https://tkhan11.github.io/">Tanveer Khan </a>
+    <small class="masthead-subtitle"> CS PhD scholar@ Jamia Millia Islamia</small>
+
+
+   <div class="menu">
+
+     <nav class="menu-content">
+
+         <a href="https://tkhan11.github.io/blog/blog.html">Blog</a>
+
+         <a href="https://tkhan11.github.io/publications/">Publications</a>
+
+       <!--  <a href="https://tkhan11.github.io/publications/files/Tanveer_Khan_CV.pdf">CV</a>
+     -->
+     </nav>
+
+  <nav class="social-icons">
+
+    <a href="https://github.com/tkhan11" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+
+    <a href="https://www.suraiyajabin.in/tanveer-ahmed-khan" target="_blank"><i class="fa fa-graduation-cap" aria-hidden="true"></i></a>
+
+    <a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+
+    <a>tanveer1910377@st.jmi.ac.in</a>
+
+ </nav>
+
+
+
+</div>
+
+  </h3>
+</header>
+
+
+    <div class="post-container">
+      <h1 style="line-height: 1.2;">
+Natural Language Processing Based Text Retrieval System
+</h1>
+
+<p>
+<img src="/images/TR0.png" alt="TR0">
+</p>
+
+
+<h2 id="the-exponential-family">1. Introduction</h2>
+
+<p style="text-align: justify">The term <i>Text retrieval</i> can be stated as the matching of some user generated query against a set of text records. These records could be any type such as: unstructured text, documentations, textual-reports,  newspaper articles, paragraphs in a manual, etc. User queries can range from multi-sentence full descriptions of an information need to just a few words.
+Text retrieval is a subset of Information retrieval systems. Search engines like Google, Bing, etc. are example of such systems. </p>
+
+
+<p style="text-align: justify">This article will introduce techniques for organizing text data. It will show how to analyze a large corpus of text, extracting feature vectors for individual documents, in order to be able to retrieve documents with similar content.</p>
+
+<h2 id="the-exponential-family">2. Prerequisite</h2>
+
+<p style="text-align: justify"><a href="https://www.python.org/">Python</a> and <a href="https://scikit-learn.org/stable/">Scikit-learn</a>, <a href="https://www.scipy.org/">Scipy </a> packages are required to run through this article, as well as a corpus of text documents. This code can be adapted to work with other set of documents we collect.</p>
+
+
+
+<h2 id="the-exponential-family">3. Datset</h2>
+<p style="text-align: justify">We will use the well-known Reuters-21578 dataset. It includes 12,902 documents for 90 classes, with a fixed splitting between test and training data (3,299, 9,603). To obtain from it the Reuters 10 categories Apte' split it is enough to select the 10 top-sized categories, i.e. Earn, Acquisition, Money-fx, Grain, Crude, Trade, Interest, Ship, Wheat, and Corn. The dataset can be downloaded from <a href="http://disi.unitn.it/moschitti/corpora.htm">here</a>.
+</p>
+
+
+
+<p style="text-align: justify">Once we have downloaded and unzipped the dataset, we can take a look inside the folder. It is split into two folders, "training" and "test". Each of those contains 91 subfolders, corresponding to pre-labeled categories, which will be useful for us later when we want to try classifying the category of an unknown message. In this article, we are not worried about training a classifier, so we'll end up using both sets together.</p>
+
+
+<h2 id="the-exponential-family">4. Methodology</h2>
+
+<p style="text-align: justify">In this section we will perform <strong>data exploration</strong>, <strong>data pre-processing</strong>, <strong>text-vectorization</strong>, and <strong>text-analysis</strong> steps.
+</p>
+
+<h3 id="the-exponential-family">4.1 Data Exploration</h3>
+<p style="text-align: justify">Let's open up a single message and look at the contents. This is the very first message in the training folder, inside of the "acq" folder, which is a category apparently containing news of corporate acquisitions.</p>
+
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>import os
+dataset= '../Text_data/Reuters21578-Apte-90Cat'
+
+post_path = os.path.join(dataset, "training", "acq", "0000005")
+with open (post_path, "r") as p:
+    raw_text = p.read()
+    print(raw_text)
+</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">Figure below shows a single sample message.</p>
+<p>
+<img src="/images/TR1.png" alt="TR1">
+</p>
+<p style="text-align: center"><strong><i>Figure 1. </i> sample message</strong></p>
+
+
+<h3 id="the-exponential-family">4.2 Data Pre-Processing</h3>
+<p style="text-align: justify">Our collection contains over 15,000 articles with a lot of information. It would take way too long to get through all the information.</p>
+
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p># this gives us all the groups (from training subfolder, but same for test)
+groups = [g for g in os.listdir(os.path.join(data_dir, "training")) if os.path.isdir(os.path.join(data_dir, "training", g))]
+print groups
+</p>
+</code></pre></div></div>
+
+
+<p style="text-align: justify">Figure below shows the different groups present in our dataset.</p>
+<p>
+<img src="/images/TR2.png" alt="TR2">
+</p>
+<p style="text-align: center"><strong><i>Figure 2. </i> Different groups present in our dataset</strong></p>
+
+
+
+<p style="text-align: justify"> Let's load all of our documents (news articles) into a single list called docs. We'll iterate through each group, grab all of the posts in each group (from both training and test directories), and add the text of the post into the docs list. We will make sure to exclude duplicate posts by cheking if we've seen the post index before.
+</p>
+
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>import re
+
+docs = []
+post_idx = []
+for g, group in enumerate(groups):
+    if g%10==0:
+        print ("reading group %d / %d"%(g+1, len(groups)))
+    posts_training = [os.path.join(data_dir, "training", group, p) for p in os.listdir(os.path.join(data_dir, "training", group)) if os.path.isfile(os.path.join(data_dir, "training", group, p))]
+    posts_test = [os.path.join(data_dir, "test", group, p) for p in os.listdir(os.path.join(data_dir, "test", group)) if os.path.isfile(os.path.join(data_dir, "test", group, p))]
+    posts = posts_training + posts_test
+    for post in posts:
+        idx = post.split("/")[-1]
+        if idx not in post_idx:
+            post_idx.append(idx)
+            with open(post, "r") as p:
+                raw_text = p.read()
+                raw_text = re.sub(r'[^\x00-\x7f]',r'', raw_text) 
+                docs.append(raw_text)
+
+print("\nwe have %d documents in %d groups"%(len(docs), len(groups)))
+print("\nhere is document 100:\n%s"%docs[100])
+</p>
+</code></pre></div></div>
+
+
+<p style="text-align: justify">Figure below shows the output of above code and content of document number 100.</p>
+<p>
+<img src="/images/TR3.png" alt="TR3">
+</p>
+<p style="text-align: center"><strong><i>Figure 3. </i> Content of document number 100</strong></p>
+
+<h3 id="the-exponential-family">4.3 Text Vectorization</h3>
+<p style="text-align: justify">We will now use sklearn's <strong><i>TfidfVectorizer</i></strong> to compute the tf-idf matrix of our collection of documents. The tf-idf matrix is an n*m matrix with the n rows corresponding to our n documents and the m columns corresponding to our terms.</p> 
+
+<p style="text-align: justify">The values corresponds to the "importance" of each term to each document, where importance is *. In this case, terms are just all the unique words in the corpus, minus english _stopwords_, which are the most common words in the english language, e.g. "it", "they", "and", "a", etc. In some cases, terms can be n-grams (n-length sequences of words) or more complex, but usually just words.</p>
+
+<p style="text-align: justify">To compute the tf-idf matrix, run:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>from sklearn.feature_extraction.text import TfidfVectorizer
+vectorizer = TfidfVectorizer(stop_words='english')
+tfidf = vectorizer.fit_transform(docs)
+</p>
+</code></pre></div></div>
+
+<p>
+<img src="/images/TR4.png" alt="TR4">
+</p>
+<p style="text-align: center"><strong><i>Figure 4. </i> TfIdf vectorizer</strong></p>
+
+
+
+<p style="text-align: justify">We see that the variable tfidf is a sparse matrix with a row for each document, and a column for each unique term in the corpus.</p>
+<p style="text-align: justify">
+Thus, we can interpret each row of this matrix as a feature vector which describes a document. Two documents which have identical rows have the same collection of words in them, although not necessarily in the same order; word order is not preserved in the tf-idf matrix. Regardless, it seems reasonable to expect that if two documents have similar or close tf-idf vectors, they probably have similar content.
+</p>
+
+
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>doc_idx = 5
+doc_tfidf = tfidf.getrow(doc_idx)
+all_terms = vectorizer.get_feature_names()
+terms = [all_terms[i] for i in doc_tfidf.indices]
+values = doc_tfidf.data
+
+print(docs[doc_idx])
+print("document's term-frequency pairs:")
+print(", ".join("\"%s\"=%0.2f"%(t,v) for t,v in zip(terms,values)))
+</p>
+</code></pre></div></div>
+
+<p>
+<img src="/images/TR5.png" alt="TR5">
+</p>
+<p style="text-align: center"><strong><i>Figure 4. </i> TfIdf vector values for document id:5</strong></p>
+
+
+<h3 id="the-exponential-family">4.4 Text Analysis</h3>
+
+
+
+<p style="text-align: justify">In practice however, the term-document matrix alone has several disadvantages. For one, it is very high-dimensional and sparse (mostly zeroes), thus it is computationally costly.</p>
+
+<p style="text-align: justify">Additionally, it ignores similarity among groups of terms. For example, the words "seat" and "chair" are related, but in a raw term-document matrix they are separate columns. So two sentences with one of each word will not be computed as similarly.</p>
+
+<p style="text-align: justify">One solution is to use latent semantic analysis (LSA, or sometimes called latent semantic indexing). LSA is a dimensionality reduction technique closely related to principal component analysis, which is commonly used to reduce a high-dimensional set of terms into a lower-dimensional set of "concepts" or components which are linear combinations of the terms.</p>
+
+<p style="text-align: justify">To do so, we use sklearn's "TruncatedSVD" function which gives us the LSA by computing a singular value decomposition (SVD) of the tf-idf matrix.
+
+</p>
+
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>from sklearn.decomposition import TruncatedSVD
+
+lsa = TruncatedSVD(n_components=100)
+tfidf_lsa = lsa.fit_transform(tfidf)
+</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">How to interpret this? "lsa" holds our latent semantic analysis, expressing our 100 concepts. It has a vector for each concept, which holds the weight of each term to that concept. "tfidf_lsa" is our transformed document matrix where each document is a weighted sum of the concepts.</p>
+
+<p style="text-align: justify">In a simpler analysis with, for example, two topics (sports and tacos), one concept might assign high weights for sports-related terms (ball, score, tournament) and the other one might have high weights for taco-related concepts (cheese, tomato, lettuce). In a more complex one like this one, the concepts may not be as interpretable. Nevertheless, we can investigate the weights for each concept, and look at the top-weighted ones. For example, below here are the top terms in concept 1.</p>
+
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>components = lsa.components_[1]
+all_terms = vectorizer.get_feature_names()
+
+idx_top_terms = sorted(range(len(components)), key=lambda k: components[k])
+
+print("10 highest-weighted terms in concept 1:")
+for t in idx_top_terms[:10]:
+    print(" - %s : %0.02f"%(all_terms[t], t))
+</p>
+</code></pre></div></div>
+
+<p>
+<img src="/images/TR6.png" alt="TR6">
+</p>
+<p style="text-align: center"><strong><i>Figure 5. </i> Ten highest-weighted terms in concept 1</strong></p>
+
+
+
+<p style="text-align: justify">The top terms in concept 1 appear related to accounting balance sheets; terms like "net", "loss", "profit".</p>
+
+<p style="text-align: justify">Now, back to our documents. Recall that tfidf_lsa is a transformation of our original tf-idf matrix from the term-space into a concept-space. The concept space is much more valuable, and we can use it to query most similar documents. We expect that two documents which about similar things should have similar vectors in tfidf_lsa. We can use a simple distance metric to measure the similarity, euclidean distance or cosine similarity being the two most common.</p>
+
+<p style="text-align: justify">Here, we'll select a single query document (index 300), calculate the distance of every other document to our query document, and take the one with the smallest distance to the query.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>from scipy.spatial import distance
+
+query_idx = 400
+
+# take the concept representation of our query document
+query_features = tfidf_lsa[query_idx]
+
+# calculate the distance between query and every other document
+distances = [ distance.euclidean(query_features, feat) for feat in tfidf_lsa ]
+    
+# sort indices by distances, excluding the first one which is distance from query to itself (0)
+idx_closest = sorted(range(len(distances)), key=lambda k: distances[k])[1:]
+
+# print our results
+query_doc = docs[query_idx]
+return_doc = docs[idx_closest[0]]
+print("QUERY DOCUMENT:\n %s \nMOST SIMILAR DOCUMENT TO QUERY:\n %s" %(query_doc, return_doc))
+</p>
+</code></pre></div></div>
+
+<p style="text-align: left">Figure below shows the Query document.</p>
+<p>
+<img src="/images/TR7.png" alt="TR7">
+</p>
+<p style="text-align: center"><strong><i>Figure 6. </i> Query document</strong></p>
+
+
+
+<p style="text-align: left">Figure below shows the most similar document to the query.</p>
+<p>
+<img src="/images/TR8.png" alt="TR8">
+</p>
+<p style="text-align: center"><strong><i>Figure 7. </i> Most similar document to query.</strong></p>
+
+
+
+<h2 id="the-exponential-family">Conclusion</h2>
+<p style="text-align: justify">Interesting find! Our query document appears to be about tax incentives for domestic oil and natural gas. Our return document is a related article about the same topic. Try looking at the next few closest results. A quick inspection reveals that most of them are about the same story.
+</p>
+
+<p style="text-align: justify">Thus we see the value of this procedure. It gives us a way to quickly identify articles which are related to each other. This can greatly aide journalists who have to sift through a lot of content which is not always indexed or organized usefully.</p>
+
+
+<!--<p style="text-align: justify"> Complete code can be found <a href="https://github.com/tkhan11/Gene-Expression-Classification">here</a>.
+</p>
+-->
+
+
+<h2 id="references">References</h2>
+
+<ul  style="text-align: justify">
+
+<li>Robertson, S. E., & Spärck Jones, K. (1994). Simple, proven approaches to text retrieval (No. UCAM-CL-TR-356). University of Cambridge, Computer Laboratory.</li>
+
+
+</ul>
+
+
+    </div>
+
+    <footer class="footer">
+  <!--
+
+
+    <a href="https://github.com/tkhan11" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+
+
+
+
+    <a href="https://suraiyajabin.in/tanveer-ahmed-khan" target="_blank"><i class="fa fa-graduation-cap" aria-hidden="true"></i></a>
+
+
+
+
+    <a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+
+
+
+
+    <a>tanveer1910377@jmi.ac.in</a>
+
+ -->
+  <div class="post-date"><a href="https://tkhan11.github.io/about/">Tanveer Khan | CS PhD scholar @ Jamia Millia Islamia</a></div>
+</footer>
+
+  </div>
+
+</body>
+</html>
