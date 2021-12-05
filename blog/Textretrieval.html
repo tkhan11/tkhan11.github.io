@@ -365,6 +365,39 @@ print("QUERY DOCUMENT:\n %s \nMOST SIMILAR DOCUMENT TO QUERY:\n %s" %(query_doc,
 </p>
 <p style="text-align: center"><strong><i>Figure 8. </i> Most similar document to query</strong></p>
 
+<h2 id="the-exponential-family">Generating Wordcloud!!!</h2>
+<p style="text-align: justify">Here for generating wordcloud we will use "Wordcloud" package available in python. We will extract the textual data for the first 100 documents and remove the stopwards present in the same using the "STOPWORDS" package. Furthermore, we will use "matplotlib" package for plotting the generated wordcloud. Below is the code for the same.</p> 
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>#Generating Wordcloud for the first 100 docs.
+text_data=[]
+for i in range(100):
+	text=docs[i]
+	text_data.append(text)
+
+from wordcloud import WordCloud, STOPWORDS
+import matplotlib.pyplot as plt
+
+text = ' '.join(text_data)
+stopwords = set(STOPWORDS) 
+wordcloud = WordCloud( stopwords=stopwords, background_color="white",width=1600,height=1000).generate(text)
+
+##Plotting
+plt.figure(figsize=(20,10))
+plt.axis("off")
+
+# "bilinear" interpolation is used to make the displayed image appear more smoothly without overlapping of words  
+# can change to some other interpolation technique to see changes like "hamming"
+plt.imshow(wordcloud, interpolation="bilinear") 
+plt.show()
+</p>
+</code></pre></div></div>
+
+<p style="text-align: left">Figure below shows the wordcloud generated from the first 100 documents.</p>
+<p>
+<img src="/images/TR9.png" alt="TR9">
+</p>
+<p style="text-align: center"><strong><i>Figure 9. </i> Wordcloud</strong></p>
 
 
 <h2 id="the-exponential-family">Conclusion</h2>
