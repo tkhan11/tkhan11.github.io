@@ -123,19 +123,19 @@ Gene Expression Classification</h1>
 </p>
 
 
-<h2 id="the-exponential-family">Introduction</h2>
+<h2 id="the-exponential-family">1. Introduction</h2>
 
 <p style="text-align: justify">In this Article we will examine a small gene expression dataset, attempting to classify leukemia patients into one of two classes. We will use some machine learning models to perform the molecular classification of cancer. </p>
 
 
-<h3 id="the-exponential-family">Dataset</h3>
+<h2 id="the-exponential-family">2. Dataset</h2>
 
 <p style="text-align: justify">This dataset comes from a proof-of-concept study published in 1999 by Golub et al. It showed how new cases of cancer could be classified by gene expression monitoring (via DNA microarray) and thereby provided a general approach for identifying new cancer classes and assigning tumors to known classes. These data were used to classify patients with acute myeloid leukemia (AML) and acute lymphoblastic leukemia (ALL).</p>
 
 <p style="text-align: justify">There are two datasets containing the <i>initial</i> (training, 38 samples) and <i>independent</i> (test, 34 samples) datasets used in the paper. These datasets contain measurements corresponding to ALL and AML samples from Bone Marrow and Peripheral Blood. Intensity values have been re-scaled such that overall intensities for each chip are equivalent.</p>
 
 
-<h2 id="the-exponential-family">Data Preparation</h2>
+<h2 id="the-exponential-family">3. Data Preparation</h2>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <p># Import all the libraries that we shall be using
@@ -442,10 +442,10 @@ plt.title("2D Transformation of the Above Graph ")
 
 
 
-<h2 id="the-exponential-family">Model Building</h2>
+<h2 id="the-exponential-family">4. Model Building</h2>
 
 
-<h3 id="the-exponential-family">Baseline</h3>
+<h3 id="the-exponential-family">4.1 Baseline</h3>
 
 <p style="text-align: justify"> Let's start by establishing a naive baseline. This doesn't require a model, we are just taking the proportion of tests that belong to the majority class as a baseline. In other words, let's see what happens if we were to predict that every patient belongs to the "ALL" class.</p>
 
@@ -462,7 +462,7 @@ Simply predicting everything as acute lymphoblastic leukemia (ALL) results in an
 </code></pre></div></div>
 
 
-<h3 id="the-exponential-family">K-Means Clustering</h3>
+<h3 id="the-exponential-family">4.2 K-Means Clustering</h3>
 <p style="text-align: justify"> First we shall try an unsupervised clustering approach using the scaled data.</p>
 
 
@@ -495,7 +495,7 @@ K-means accuracy: 0.765
 
 <p style="text-align: justify">This K-means approach is better than the baseline, but we should be able to do better with some kind of supervised learning model.</p>
 
-<h3 id="the-exponential-family">Naive Bayes</h3>
+<h3 id="the-exponential-family">4.3 Naive Bayes</h3>
 <p style="text-align: justify"> For our first supervised model, we shall use a very straightforward naive bayes approach.</p>
 
 
@@ -539,7 +539,7 @@ Naive Bayes accuracy: 0.912
 
 
 
-<h3 id="the-exponential-family">Logistic Regression</h3>
+<h3 id="the-exponential-family">4.4 Logistic Regression</h3>
 <p style="text-align: justify"> Another very standard approach is logistic regression. Here we will be using grid search cross-validation tuning to try and determine the best hyperparameters. We don't need to scale the data for logistic regression, nor are we using the PCA version of the dataset.</p>
 
 
@@ -595,7 +595,7 @@ Logistic Regression accuracy: 1.0
 
 
 
-<h3 id="the-exponential-family">Support Vector Machine</h3>
+<h3 id="the-exponential-family">4.5 Support Vector Machine</h3>
 <p style="text-align: justify"> Here we will try another traditional approach, a support vector machine (SVM) classifier. For the SVM, so we using the PCA version of the dataset. Again we use grid search cross-validation to tune the model.</p>
 
 
@@ -647,7 +647,7 @@ SVM accuracy: 0.941
 </p>
 
 
-<h3 id="the-exponential-family">Neural Network</h3>
+<h3 id="the-exponential-family">4.5 Neural Network</h3>
 <p style="text-align: justify"> Finally we shall build a neural network using Keras (with TensorFlow as a backend). This only a "shallow" learning model with one hidden layer — adding several extra layers with so few training datapoints would just lead to overfitting.</p>
 
 
@@ -712,7 +712,7 @@ Neural Network accuracy:  0.706
 
 
 
-<h2 id="the-exponential-family">Conclusion</h2>
+<h2 id="the-exponential-family">5. Conclusion</h2>
 <p style="text-align: justify">In conclusion, the logistic regression model provided the best performance in correct molecular classification of cancer.</p>
 
 <p style="text-align: justify"> Complete code can be found <a href="https://github.com/tkhan11/Gene-Expression-Classification">here</a>.
