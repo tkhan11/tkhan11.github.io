@@ -124,14 +124,14 @@ Graph Convolutional Neural Networks for Node Classification
 <img src="/images/gcnn.png" alt="gcnn">
 </p>
 
-<h2 id="the-exponential-family">Introduction</h2>
+<h2 id="the-exponential-family">1. Introduction</h2>
 
 <p style="text-align: justify">Many datasets in various machine learning (ML) applications have structural relationships between their entities, which can be represented as graphs. Such application includes social and communication networks analysis, traffic prediction, and fraud detection. Graph representation Learning aims to build and train models for graph datasets to be used for a variety of ML tasks.
 </p>
 
 <p style="text-align: justify">This article demonstrate a simple implementation of a Graph CNN (GraphCNN) model. The model is used for a node prediction task on the Cora dataset to predict the subject of a paper given its words and citations network.</p>
 
-<h2 id="the-exponential-family">Import Packages</h2>
+<h2 id="the-exponential-family">2. Import Packages</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <p>import os
 import pandas as pd
@@ -145,11 +145,11 @@ from tensorflow.keras import layers
 </code></pre></div></div>
 
 
-<h2 id="the-exponential-family">Prepare the Dataset</h2>
+<h2 id="the-exponential-family">3. Prepare the Dataset</h2>
 <p style="text-align: justify"> The Cora dataset consists of 2,708 scientific papers classified into one of seven classes. The citation network consists of 5,429 links. Each paper has a binary word vector of size 1,433, indicating the presence of a corresponding word.
 </p>
 
-<h3 id="the-exponential-family">Download the dataset</h3>
+<h3 id="the-exponential-family">3.1 Download the dataset</h3>
 <p style="text-align: justify">The dataset has two tap-separated files: <i>cora.cites</i> and <i>cora.content</i>.
 </p>
 
@@ -169,7 +169,7 @@ data_dir = os.path.join(os.path.dirname(zip_file), "cora")
 </code></pre></div></div>
 
 
-<h3 id="the-exponential-family">Process and visualize the dataset</h2>
+<h3 id="the-exponential-family">3.2 Process and visualize the dataset</h2>
 
 
 
@@ -324,7 +324,7 @@ nx.draw_spring(cora_graph, node_size=15, node_color=subjects)
 
 
 
-<h2 id="the-exponential-family">Data Pre-Processing</h2>
+<h2 id="the-exponential-family">4. Data Pre-Processing</h2>
 
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
@@ -374,8 +374,8 @@ def display_learning_curves(history):
 
 
 
-<h2 id="the-exponential-family">Build a Graph Neural Network Model</h2>
-<h3 id="the-exponential-family">Prepare the data for the graph model</h3>
+<h2 id="the-exponential-family">5. Building a Graph Neural Network Model</h2>
+<h3 id="the-exponential-family">5.1 Prepare the data for the graph model</h3>
 
 
 <p style="text-align: justify">Preparing and loading the graphs data into the model for training is the most challenging part in GNN models, which is addressed in different ways by the specialised libraries. In this example, we show a simple approach for preparing and using graph data that is suitable if your dataset consists of a single graph that fits entirely in memory.</p>
@@ -407,7 +407,7 @@ Nodes shape: (2708, 1433)
 </p>
 </code></pre></div>
 
-<h3 id="the-exponential-family">Implement a graph convolution layer</h3>
+<h3 id="the-exponential-family">5.2 Implement a graph convolution layer</h3>
 <p style="text-align: justify">We implement a graph convolution module as a Keras Layer. Our GraphConvLayer performs the following steps:</p>
 
 <p style="text-align: justify">1. <strong><i>Prepare:</i></strong> The input node representations are processed using a FFN to produce a message. You can simplify the processing by only applying linear transformation to the representations.</p>
@@ -523,7 +523,7 @@ Nodes shape: (2708, 1433)
 </code></pre></div>
 
 
-<h3 id="the-exponential-family">Implement a graph neural network node classifier</h3>
+<h3 id="the-exponential-family">5.3 Implement a graph neural network node classifier</h3>
 
 <p style="text-align: justify">The GNN classification model follows the Design Space for Graph Neural Networks approach, as follows:</p>
 <p style="text-align: justify">1. Apply preprocessing to the node features to generate initial node representations.</p>
@@ -633,7 +633,7 @@ gnn_model.summary()
 <p style="text-align: center"><strong><i>Figure 4. </i> Model summary.</strong></p>
 
 
-<h3 id="the-exponential-family">Training the GNN model</h3>
+<h3 id="the-exponential-family">5.4 Training the GNN model</h3>
 <p style="text-align: justify">Note that we use the standard supervised cross-entropy loss to train the model. However, we can add another self-supervised loss term for the generated node embeddings that makes sure that neighbouring nodes in graph have similar representations, while faraway nodes have dissimilar representations.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
@@ -668,7 +668,7 @@ Test accuracy: 80.19%
 
 
 
-<h3 id="the-exponential-family">Examine the GNN model predictions</h3>
+<h3 id="the-exponential-family">5.5 Examine the GNN model predictions</h3>
 <p style="text-align: justify">Let's add the new instances as nodes to the node_features, and generate links (citations) to existing nodes.</p>
 
 
@@ -784,7 +784,7 @@ Instance 7:
 <p style="text-align: justify">Here, we see that the probabilities of the expected subjects (to which several citations are added) are higher compared to the baseline model.</p>
 
 
-<h2 id="the-exponential-family">Conclusion</h2>
+<h2 id="the-exponential-family">6. Conclusion</h2>
 <p style="text-align: justify">In this article, we build and tested our Graph Convolutional Neural Network (GraphCNN) model for the node classification task. Our proposed model achieved an accuracy of 80% in correct classification of the nodes.</p>
 
 <h2 id="references">References</h2>
