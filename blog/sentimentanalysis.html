@@ -373,7 +373,7 @@ batch_size = 128
 </p>
 </code></pre></div></div>
 
-<h3 id="the-exponential-family">6. Training our deep learning model</h3>
+<h3 id="the-exponential-family">5.1 Training our deep learning model</h3>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <p>
 #  Train the model
@@ -384,7 +384,7 @@ history = model.fit(Report_train_padded, Sentiment_train_onehot_encoded,
 </code></pre></div></div>
 
 
-<h3 id="the-exponential-family">7. Deep learning model evaluation on test data</h3>
+<h3 id="the-exponential-family">5.2 Model evaluation on test data</h3>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <p>
 # Model Evaluation on Test data
@@ -407,7 +407,7 @@ confusion_mtx = confusion_matrix(Sentiment_test_integ
 </p>
 </code></pre></div></div>
 
-<h3 id="the-exponential-family">8. Results</h3>
+<h3 id="the-exponential-family">6. Results</h3>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <p>
 
@@ -455,7 +455,7 @@ plt.show()
 </p>
 
 
-<h3 id="the-exponential-family">8.1 Plotting the confusion matrix </h3>
+<h3 id="the-exponential-family">6.1 Plotting the confusion matrix </h3>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <p>
 # Defining function for plotting confusion matrix
@@ -501,7 +501,7 @@ plot_confusion_matrix(confusion_mtx, classes = range(3))
 </p>
 
 
-<h2 id="the-exponential-family">9. Conclusion</h2>
+<h2 id="the-exponential-family">7. Conclusion</h2>
 <p style="text-align: justify">In this article, we build and tested our deep learning based LSTM model for the sentiment analysis of drug review data. Our proposed model achieved an accuracy of 58% in correctly predicting the sentiment of the patients as positve, negative or neutral. Best results in the accuracy obtained when the number of epochs were set to 10, further increasing the number of epochs decreased the accuracy of the model. Less accuracy may be attributed to the fewer data available for the training purpose.</p>
 
 <h2 id="references">References</h2>
