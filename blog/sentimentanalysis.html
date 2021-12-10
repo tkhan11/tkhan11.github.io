@@ -116,23 +116,33 @@
 Deep learning based sentiment analysis of drug reviews
 </h1>
 
+
+<p>
+<img src="/images/SDR.png" alt="SDR">
+</p>
+
+<h2 id="the-exponential-family">1. Introduction</h2>
+
 <p style="text-align: justify">Finding the efficacy and usability of a medical drug as a cure for a disease can be a problem to solve as there are chances for side effects. Generalizable solution to this problem can be achieved by exploring the post-marketing drug surveillance methods such as drug reviews analysis to monitor drug-related issues arising after taking the medication. Based on the drug reviews of patients' feedback, our objective is to recognize the sentiment inclination (positive/negative/neutral) of drug reviews by performing sentiment analysis.</p>
 
 
 
-<h2 id="the-exponential-family">Objective</h2>
+<h2 id="the-exponential-family">2. Objective</h2>
 
 <p style="text-align: justify"> The proposed objective is to perform the sentiment analysis of drug reviews using deep learning techniques. </p>
 
 
-<h2 id="the-exponential-family">Dataset</h2>
+<h2 id="the-exponential-family">3. Dataset</h2>
 
 <p style="text-align: justify"><a href="https://archive.ics.uci.edu/ml/datasets/Drug+Review+Dataset+%28Druglib.com%29">Drug Review Dataset</a> - The dataset provides patient reviews on specific drugs along with related conditions. Reviews and ratings are grouped into reports on the three aspects benefits, side effects and overall comment.
 
 </p>
 
-<h2 id="the-exponential-family">Approach:</h2>
+<h2 id="the-exponential-family">4. Methodology</h2>
 
+<p style="text-align: justify">The proposed methodology for building a deep learning model for sentiment analysis on drug reviews has the following steps:</p>
+
+<h3 id="the-exponential-family">4.1 Splitting of Data</h3>
 <ul>
   <li> Data available in Train and Test tab seperated values (tsv) files</li>
   <li> Training model using hold-out.</li>
@@ -141,12 +151,7 @@ Deep learning based sentiment analysis of drug reviews
 
 </ul>
 
-
-
-<h2 id="the-exponential-family">Methodology</h2>
-<p style="text-align: justify">The proposed methodology for building a deep learning model for sentiment analysis on drug reviews has the following steps:</p>
-
-<h3 id="the-exponential-family">Importing packages</h3>
+<h3 id="the-exponential-family">4.2 Importing packages</h3>
 
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
@@ -186,7 +191,7 @@ from sklearn.model_selection import StratifiedKFold
 </p>
 </code></pre></div></div>
 
-<h3 id="the-exponential-family">Data Acquisition</h3>
+<h3 id="the-exponential-family">4.3 Data Exploration</h3>
 <p style="text-align: justify">For this purpose python pandas library is used to read the tsv files and load it in the working directory for further processing.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
@@ -200,7 +205,7 @@ Test_dataset=pd.read_csv('C:\\Users\\tanveerlaptop\\Desktop\\miscellaneous\\Prog
 </p>
 </code></pre></div></div>
 
-<h3 id="the-exponential-family">Data Pre-processing</h3>
+<h3 id="the-exponential-family">4.4 Data Pre-processing</h3>
 <p style="text-align: justify">In this phase we will prepare our data for predicting patient satisfaction based on "rating" and "reviews". We will perform concatanation to join the "benifits_review", "side_effects_review" and "comments" into a "report" attribute to predict the overall satisfaction of the patients. Furthermore, labeling of ratings as Postive, Negative and Neutral for the sentiment classification.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
@@ -284,24 +289,17 @@ def process_text(report):
 # Applying process_text function on Train and Test data for cleaning of text
 Prediction_Train_data['report'] = Prediction_Train_data['report'].map(lambda x: process_text(x))
 Prediction_Test_data['report'] = Prediction_Test_data['report'].map(lambda x: process_text(x))
-</p>
-</code></pre></div></div>
 
-
-<h3 id="the-exponential-family">Splitting data for Training and testing</h3>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<p>
 Sentiment_train = Prediction_Train_data['Sentiment']
 Report_train = Prediction_Train_data['report']
 
 Sentiment_test = Prediction_Test_data['Sentiment']
-Report_test = Prediction_Test_data['report'
+Report_test = Prediction_Test_data['report']
 </p>
 </code></pre></div></div>
 
 
-<h3 id="the-exponential-family">Preparing data for our LSTM model </h3>
+<h3 id="the-exponential-family">4.5 Preparing data for our LSTM model </h3>
 <p style="text-align: justify">For supplying data to the deep learning model Long short term memory (LSTM), we will convert our text data into one hot encoded data. Further, we will tokenize our encoded data and will create sequences for the training and test sets of the data.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
@@ -354,7 +352,7 @@ Sentiment_labels = ['Negative', 'Neutral', 'Positive']              #  0:Negativ
 </p>
 </code></pre></div></div>
 
-<h3 id="the-exponential-family">Building our deep learning model</h3>
+<h2 id="the-exponential-family">5. Building our deep learning model</h2>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <p>
@@ -375,7 +373,7 @@ batch_size = 128
 </p>
 </code></pre></div></div>
 
-<h3 id="the-exponential-family">Training our deep learning model</h3>
+<h3 id="the-exponential-family">6. Training our deep learning model</h3>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <p>
 #  Train the model
@@ -386,7 +384,7 @@ history = model.fit(Report_train_padded, Sentiment_train_onehot_encoded,
 </code></pre></div></div>
 
 
-<h3 id="the-exponential-family">Deep learning model evaluation on test data</h3>
+<h3 id="the-exponential-family">7. Deep learning model evaluation on test data</h3>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <p>
 # Model Evaluation on Test data
@@ -409,7 +407,7 @@ confusion_mtx = confusion_matrix(Sentiment_test_integ
 </p>
 </code></pre></div></div>
 
-<h3 id="the-exponential-family">Results</h3>
+<h3 id="the-exponential-family">8. Results</h3>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <p>
 
@@ -457,7 +455,7 @@ plt.show()
 </p>
 
 
-<h3 id="the-exponential-family">Plotting the confusion matrix </h3>
+<h3 id="the-exponential-family">8.1 Plotting the confusion matrix </h3>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <p>
 # Defining function for plotting confusion matrix
@@ -503,8 +501,8 @@ plot_confusion_matrix(confusion_mtx, classes = range(3))
 </p>
 
 
-<h2 id="the-exponential-family">Conclusion</h2>
-<p style="text-align: justify">In this article, we build and tested our deep learning based LSTM model for the sentiment analysis of drug review data. Our proposed model achieved an accuracy of 58% in correctly predicting the sentiment of the patients as positve, negative or neutral. Best results in the accuracy obtained when the number of epochs were set to 10, further increasing the number of epochs decreased the accuracy of the model. Less accuracy may be attributed to the fewer data available for the training purpose.	 </p>
+<h2 id="the-exponential-family">9. Conclusion</h2>
+<p style="text-align: justify">In this article, we build and tested our deep learning based LSTM model for the sentiment analysis of drug review data. Our proposed model achieved an accuracy of 58% in correctly predicting the sentiment of the patients as positve, negative or neutral. Best results in the accuracy obtained when the number of epochs were set to 10, further increasing the number of epochs decreased the accuracy of the model. Less accuracy may be attributed to the fewer data available for the training purpose.</p>
 
 <h2 id="references">References</h2>
 
