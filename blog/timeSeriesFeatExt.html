@@ -1,0 +1,491 @@
+<!doctype html>
+<html>
+
+<head>
+
+  <title>
+    Tanveer Ahmed Khan JAIRG
+  </title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="/dist/css/main.css">
+  <link rel="stylesheet" href="/dist/css/syntax.css">
+  <!-- Use Atom -->
+  <link type="application/atom+xml" rel="alternate" href="https://tkhan11.github.io/" title="Tanveer Khan" />
+  <!-- Use RSS-2.0 -->
+  <!--<link href="https://tkhan11.github.io" type="application/rss+xml" rel="alternate" title="Tanveer Khan | CS PhD scholar @ Jamia Millia Islamia"/>
+  //-->
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quattrocento+Sans">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+    MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      });
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PND0KQF3PH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PND0KQF3PH');
+</script>
+
+
+  <!-- Use Jekyll SEO plugin -->
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Time series based feature extraction: Electrocardiogram (ECG) data | Tanveer Khan</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Time series based feature extraction: Electrocardiogram (ECG) data" />
+<meta name="author" content="Tanveer Khan" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="layout: post title: “Time series based feature extraction: Electrocardiogram (ECG) data” author: “Tanveer Khan” categories: journal blurb: “” img: “” tags: [] —" />
+<meta property="og:description" content="layout: post title: “Time series based feature extraction: Electrocardiogram (ECG) data” author: “Tanveer Khan” categories: journal blurb: “” img: “” tags: [] —" />
+<link rel="canonical" href="https://tkhan11.github.io/blog/timeSeriesFeatExt.html" />
+<meta property="og:url" content="https://tkhan11.github.io/blog/timeSeriesFeatExt.html" />
+<meta property="og:site_name" content="Tanveer Khan" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-04-24T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Time series based feature extraction: Electrocardiogram (ECG) data" />
+
+
+
+<script type="application/ld+json">
+{"datePublished":"2022-04-24T00:00:00+00:00","url":"https://tkhan11.github.io/blog/timeSeriesFeatExt.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://tkhan11.github.io/blog/timeSeriesFeatExt.html"},"author":{"@type":"Person","name":"Tanveer Khan"},"@context":"https://schema.org"}</script>
+
+
+
+</head>
+
+
+
+<body>
+
+  <div class="container">
+    <header class="masthead">
+  <h3 class="masthead-title">
+    <a href="https://tkhan11.github.io/">Tanveer Khan </a>
+    <small class="masthead-subtitle"> CS PhD scholar@ Jamia Millia Islamia</small>
+
+
+   <div class="menu">
+
+     <nav class="menu-content">
+
+         <a href="https://tkhan11.github.io/blog/blog.html">Blog</a>
+
+         <a href="https://tkhan11.github.io/publications/">Publications</a>
+
+       <!--  <a href="https://tkhan11.github.io/publications/files/Tanveer_Khan_CV.pdf">CV</a>
+     -->
+     </nav>
+
+  <nav class="social-icons">
+
+    <a href="https://github.com/tkhan11" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+
+    <a href="https://www.suraiyajabin.in/tanveer-ahmed-khan" target="_blank"><i class="fa fa-graduation-cap" aria-hidden="true"></i></a>
+
+    <a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+
+    <a>tanveer1910377@st.jmi.ac.in</a>
+
+ </nav>
+
+
+
+</div>
+
+  </h3>
+</header>
+
+
+    <div class="post-container">
+<h1 style="line-height: 1.2;">
+Time series based feature extraction: Electrocardiogram (ECG) data
+</h1>
+
+
+<p style="text-align: justify"> <i>In this article we will examine the times series based feature extraction techniques more specifically, Fourier and Wavelet transforms. We will extract frequency and wavelet features from ECG data to train a classification model. </i></p>
+
+<p>
+<img src="./ECG.jpg" alt="ECG">
+</p>
+
+<h2 id="the-exponential-family">1. Introduction</h2>
+
+<p style="text-align: justify">Electrocardiogram (ECG) is a non-invasive technique to record the heart's electrical activity by placing electrodes on the chest. The end product of the ECG is the <strong>electrogram</strong> which is a graph of <i>voltage</i> versus <i>time</i> of the electrical activity of the heart.</p>
+
+<p style="text-align: justify"> Feature extraction remains an important step in building classification models. Here, we will extract frequency domain and time-frequency domain features from our ECG data. Frequency features are extracted by applying <i>Fast Fourier Transform (FFT)</i> on our ECG data. To extract time-frequency features we apply <i>wavelet</i> transform on our time series data.</p>
+
+<h2 id="the-exponential-family">2. About Dataset</h2>
+
+<p style="text-align: justify"> <a href="https://in.mathworks.com/matlabcentral/fileexchange/65892-mathworks-physionet_ecg_data">ECG</a> data set consisting of 162 ECG recordings and diagnostic labels. The data are sampled at 128 hertz.</p>
+
+<h2 id="the-exponential-family">3. Methodology</h2>
+<p style="text-align: justify"> Typical ECG signal classification pipeline includes tasks such as: <strong>signal-acquisition</strong>, <strong>signal pre-processing</strong>, <strong>features extraction</strong>, and <strong>classification</strong> phase. 
+
+<p>
+<img src="/images/EEGpreprocess.png" alt="ECGpreprocess">
+</p>
+<p style="text-align: center"><i>Figure 1. </i> ECG signal processing steps</p>
+
+<p style="text-align: justify">
+Here, our ECG data is already acquired and pre-processed so, we can start from the next phase in the pipeline which is the feature extraction phase.
+</p>
+<p style="text-align: justify">To proceed further to the next phase, first, we have to load the data and then segregate the features and labels values from our ECG data. We will also apply some visualiztions to go through with the ECG data.</p>
+
+
+<h3 id="the-exponential-family">4. Building a Classification model</h3>
+<p style="text-align: justify">Here, in this section we will write python code for building a classification model. We will start by importing relevant packages, and the loading the data, and so on.</p>
+
+<h3 id="the-exponential-family">4.1 Importing packages</h3>
+<p style="text-align: justify">Here, we have imported the relevant packages for the loading of data, visualization, feature extraction, and classification purpose. Below is the code for the same.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+%matplotlib inline
+import numpy as np
+import pandas as pd
+import pywt
+import seaborn as sns
+import scaleogram as scg 
+import matplotlib.pyplot as plt
+import matplotlib.gridspec as GridSpec
+from mat4py import loadmat
+from scipy.fftpack import fft
+</p>
+</code></pre></div></div>
+
+
+<h3 id="the-exponential-family">4.2 Data Loading</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p># Create list of data and labels from dictionary
+data = loadmat("../article_fft/data/physionet_ECG_data-master/ECGData/ECGData.mat")
+
+ecg_total = len(data['ECGData']['Data'])
+ecg_data = []
+ecg_labels = []
+for i in range(0, ecg_total):
+    ecg_data.append(data['ECGData']['Data'][i])
+    ecg_labels.append(data['ECGData']['Labels'][i])
+
+flat_list_ecg_labels = [item for sublist in ecg_labels for item in sublist]</p>
+</code></pre></div></div>
+
+
+<h3 id="the-exponential-family">4.3 Data Visualization</h3>
+<p style="text-align: justify">Here, we plot the raw ECG signal data. Below is the code for the same.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>## Data Visualization
+
+fig = plt.figure(figsize=(12, 6))
+grid = plt.GridSpec(3, 1, hspace=0.6)
+
+arr_signal = fig.add_subplot(grid[0, 0])
+chg_signal = fig.add_subplot(grid[1, 0])
+nsr_signal = fig.add_subplot(grid[2, 0])
+
+arr_signal.plot(range(0, len(data['ECGData']['Data'][33]), 1), ecg_data[33], color = 'blue')
+arr_signal.set_xlim(0, 1000)
+arr_signal.set_title('ARR Signal')
+
+chg_signal.plot(range(0, len(data['ECGData']['Data'][100]), 1), ecg_data[100], color = 'red')
+chg_signal.set_xlim(0, 1000)
+chg_signal.set_title('CHG Signal')
+
+nsr_signal.plot(range(0, len(data['ECGData']['Data'][150]), 1), ecg_data[150], color = 'green')
+nsr_signal.set_xlim(0, 1000)
+nsr_signal.set_title('NSR Signal')
+plt.close(fig)</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">Figure below shows the plot of raw ECG signal values.</p>
+<p>
+<img src="/images/TS1.png" alt="TS1">
+</p>
+<p style="text-align: center"><i>Figure 2. </i> Raw ECG data.</p>
+
+
+
+
+
+
+<h3 id="the-exponential-family">4.4 Feature extraction</h3>
+<p style="text-align: justify"> From the pre-processed ECG signal data we will extract the frequncy and time-frequency domain features. These features are extracted after applying fast fourier (FFT) and wavelet transforms.</p>
+
+<h3 id="the-exponential-family"><i>Frequency features</i></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>#Arr signal Fourier Transform
+nn = 160
+signal_length = 1000
+full_signal_fft_values = np.abs(fft(ecg_data[nn][:signal_length]))
+x_values_fft = range(0, len(data['ECGData']['Data'][nn]), 1)[:signal_length]
+
+fig = plt.figure(figsize=(12, 6))
+grid = plt.GridSpec(2, 1,hspace=0.6)
+
+full_signal = fig.add_subplot(grid[0, 0])
+fft_comp = fig.add_subplot(grid[1, 0])
+
+full_signal.plot(x_values_fft, ecg_data[nn][:signal_length], color = 'green')
+full_signal.set_xlim(0, 512)
+full_signal.set_title('Full Signal')
+fft_comp.plot(x_values_fft, list(full_signal_fft_values), color = 'purple')
+fft_comp.set_xlim(0, 512)
+fft_comp.set_ylim(0, 100)
+fft_comp.set_title('FFT of full signal')
+plt.close(fig)</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">Figure below shows the signal values before and after applying FFT.</p>
+<p>
+<img src="/images/TS3.png" alt="TS3">
+</p>
+<p style="text-align: center"><i>Figure 3. </i> FFT transformed data.</p>
+
+
+<h3 id="the-exponential-family"><i>Wavelet features</i></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p># choose default wavelet function 
+scg.set_default_wavelet('morl')
+
+nn = 33
+signal_length = 128
+# range of scales to perform the transform
+scales = scg.periods2scales( np.arange(1, signal_length+1) )
+x_values_wvt_arr = range(0,len(ecg_data[nn]),1)
+
+# plot the signal 
+fig1, ax1 = plt.subplots(1, 1, figsize=(9, 3.5));  
+ax1.plot(x_values_wvt_arr, ecg_data[nn], linewidth=3, color='blue')
+ax1.set_xlim(0, signal_length)
+ax1.set_title("ECG ARR")
+
+# the scaleogram
+scg.cws(ecg_data[nn][:signal_length], scales=scales, figsize=(10, 4.0), coi = False, ylabel="Period", xlabel="Time",
+        title='ECG_ARR: scaleogram with linear period'); 
+print("Default wavelet function used to compute the transform:", scg.get_default_wavelet(), "(",
+      pywt.ContinuousWavelet(scg.get_default_wavelet()).family_name, ")")
+</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">Figure below shows the signal values before and after applying wavelet transform.</p>
+<p>
+<img src="/images/TS7.png" alt="TS7">
+</p>
+<p style="text-align: center"><i>Figure 4. </i> ECG ARR</p>
+
+<p>
+<img src="/images/TS8.png" alt="TS8">
+</p>
+<p style="text-align: center"><i>Figure 5. </i> ECG_ARR: scaleogram with linear period</p>
+
+
+<h3 id="the-exponential-family">4.5 Classification of ECG data</h3>
+<p style="text-align: justify">Here, we will perform the classification of ECG signal data. In this we will build and train a feed forward neural network model for the same.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>#Preparing data
+arr_list = ecg_data[0:95]
+chf_list = ecg_data[96:125]
+nsr_list = ecg_data[126:162]
+
+arr_split_256 = [np.array_split(arr_list[ii], 256) for ii in range(95)]
+arr_flatten = [item for sublist in arr_split_256 for item in sublist]
+
+chf_split_256 = [np.array_split(chf_list[ii], 256) for ii in range(29)]
+chf_flatten = [item for sublist in chf_split_256 for item in sublist]
+
+nsr_split_256 = [np.array_split(nsr_list[ii], 256) for ii in range(36)]
+nsr_flatten = [item for sublist in nsr_split_256 for item in sublist]
+
+reduce_size = 500
+full_1500 = (arr_flatten[0:reduce_size] + chf_flatten[0:reduce_size] + nsr_flatten[0:reduce_size])
+
+# creating the data set
+from sklearn import preprocessing
+from sklearn.model_selection import train_test_split
+
+fs = len(full_1500[0])
+sgn_length = 2000   #65536   Pay atention with ram memory! 
+size_dataset = len(full_1500)
+scales = range(1, fs)
+waveletname = 'morl'
+ 
+X_full = np.ndarray(shape=(size_dataset, fs-1, fs-1, 3))
+                 
+for i in range(0, size_dataset):
+    if i % 500 == 0:
+        print (i, 'done!')
+    for j in range(0, 3):
+        signal = full_1500[i]
+        coeff, freq = pywt.cwt(signal, scales, waveletname, 1)
+        X_full[i, :, :, j] = coeff[:,:fs-1]
+
+### Dividing data into training and testing datasets
+list_ecg_labels_arr = ['ARR']*reduce_size 
+list_ecg_labels_chf = ['CHF']*reduce_size 
+list_ecg_labels_nsr = ['NSR']*reduce_size 
+list_ecg_labels = (list_ecg_labels_arr + list_ecg_labels_chf + list_ecg_labels_nsr)
+
+le = preprocessing.LabelEncoder()
+ecg_labels_encoded = le.fit_transform(list_ecg_labels)
+X_train, X_test, y_train, y_test = train_test_split(X_full, ecg_labels_encoded, test_size=0.25, random_state=42)</p>
+</code></pre></div></div>
+
+
+<h3 id="the-exponential-family">4.6 Training a NN classifier with ECG Scaleograms</h3>
+<p style="text-align: justify">For performing the classification task Feed forward neural network (ANN) is used.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>import sys
+from tensorflow import keras
+#Inspecting DATA
+n_rows = 3
+n_cols = 5
+class_names = ['ARR', 'CHF', 'NSR']
+plt.figure(figsize=(n_cols*1.5, n_rows * 1.6))
+for row in range(n_rows):
+    for col in range(n_cols):
+        index = n_cols * row + col
+        plt.subplot(n_rows, n_cols, index + 1)
+        plt.imshow((X_train[index]*255).astype(np.uint8), cmap="binary", interpolation="spline36")
+        plt.axis('off')
+        plt.title(class_names[y_train[index]])
+plt.show()
+</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">Figure below shows a inspection of ECG labels scelogram data.</p>
+<p>
+<img src="/images/TS9.png" alt="TS9">
+</p>
+<p style="text-align: center"><i>Figure 6. </i> ECG labels scaleogram</p>
+
+
+<p style="text-align: justify">Defining the Neural network model architecture.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>
+# Defining basic NN
+num_filter, num_classes = 3, 3
+model = keras.models.Sequential([
+    keras.layers.Flatten(input_shape=[fs-1, fs-1, num_filter]),
+    keras.layers.Dense(300, activation="relu"),                 
+    keras.layers.Dense(100, activation="relu"),
+    keras.layers.Dense(num_classes, activation="softmax")
+])
+model.compile(loss="sparse_categorical_crossentropy",
+              optimizer="sgd", metrics=["accuracy"])
+</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">Figures below shows the model summary.</p>
+
+<p>
+<img src="/images/TS11.png" alt="TS11">
+</p>
+<p style="text-align: center"><i>Figure 7. </i> Build NN model summary</p>
+
+
+
+<p style="text-align: justify">Training and evaluation of the NN model.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>### Model Training
+history = model.fit(X_train, y_train, epochs=10, validation_data=(X_test, y_test))
+              optimizer="sgd", metrics=["accuracy"])
+
+## Model evaluation
+model.evaluate(X_test, y_test)
+</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">Here, we will evaluate the trained NN model perfromance on our test data by calling <i>model.predict()</i> function. We will also plot a confusion matrix as performance measure to find out the actual labels and predicted labels.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p># Confusion Matrix With Scikit
+from sklearn.metrics import confusion_matrix
+
+cm = confusion_matrix(y_test, pred_classes)
+cm_norm =  cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+
+# Ploting Confusion Matrix
+
+df_cm = pd.DataFrame(cm_norm, ['ARR', 'CHF', 'NSR'], ['ARR', 'CHF', 'NSR'])
+plt.figure(figsize = (10,6))
+conf = sns.heatmap(df_cm, annot=True, square=True, annot_kws={"size": 12})
+conf.set_xlabel('Prediction')
+conf.set_ylabel('True')
+</p>
+</code></pre></div></div>
+
+<p style="text-align: justify">Figures below shows the confusion matrix.</p>
+
+<p>
+<img src="/images/TS10.png" alt="TS10">
+</p>
+<p style="text-align: center"><i>Figure 8. </i> Confusion matrix</p>
+
+
+
+<h2 id="the-exponential-family">4. Conclusion</h2>
+<p style="text-align: justify">In this article we have seen two different ways to extact features from signals based on time dependence of frequency distribution, Fourier and Wavelet transforms. These functions transform a signal from the time-domain to the frequency-domain and give us its frequency spectrum.</p>
+
+<p style="text-align: justify">We have learnt that Fourier transform is the most convenient tool when signal frequencies do not change in time. However, if the frequencies of the signal vary in time the most performant technique is a wavelet transform. Based on ECG data, we made a classification over three groups of people with different pathologies: cardiac arrhythmia, congestive heart failure and healthy people. With a very simple neural network we were able to get a precise model which quickly allows us to detect a healthy person from others with heart disease.</p>
+
+<p style="text-align: justify">
+Complete code can be found <a href="https://github.com/tkhan11">here</a>.
+</p>
+
+<h2 id="references">References</h2>
+
+<ul  style="text-align: justify">
+
+<li>Ribeiro, A.H., Ribeiro, M.H., Paixão, G.M.M. et al. Automatic diagnosis of the 12-lead ECG using a deep neural network. Nat Commun 11, 1760 (2020).</li>
+
+</ul>
+
+
+    </div>
+
+    <footer class="footer">
+  <!--
+
+
+    <a href="https://github.com/tkhan11" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+
+
+
+
+    <a href="https://suraiyajabin.in/tanveer-ahmed-khan" target="_blank"><i class="fa fa-graduation-cap" aria-hidden="true"></i></a>
+
+
+
+
+    <a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+
+
+
+
+    <a>tanveer1910377@jmi.ac.in</a>
+
+ -->
+  <div class="post-date"><a href="https://tkhan11.github.io/about/">Tanveer Khan | CS PhD scholar @ Jamia Millia Islamia</a></div>
+</footer>
+
+  </div>
+
+</body>
+</html>
